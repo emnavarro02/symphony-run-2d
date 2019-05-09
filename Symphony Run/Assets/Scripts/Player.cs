@@ -76,9 +76,10 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        
         if (Input.GetKey(KeyCode.Space))
-
         {
+            // Debug.Log("JUMP");
             if (onGround)
             {
                 hangTimer = hangTime;
@@ -114,27 +115,33 @@ public class Player : MonoBehaviour
 
     void SpeedApply()
     {
-        characterController.velocity = new Vector2(forwardSpeed * Time.deltaTime, characterController.velocity.y); // Controls the speed in the X direction
-        characterController.velocity = new Vector2(characterController.velocity.x, ySpeed); // Controls the speed in the Y direction
-//        characterController.Move(transform.forward * forwardSpeed * Time.deltaTime);  // Controls the speed in forward direction
-//        characterController.Move(new Vector3(0, ySpeed, 0) * Time.deltaTime);         
+        characterController.velocity = new Vector2(forwardSpeed, characterController.velocity.y); // Controls the speed in the X direction
+        characterController.velocity = new Vector2(characterController.velocity.x, ySpeed);                        // Controls the speed in the Y direction
     }
 
-    void WallJump(ControllerColliderHit hitSent)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check with the player is on the ground 
-        // and if the player is colliding with a wall
-        if (!onGround && hitSent.normal.y < 0.1f)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                // Change the character direction
-                transform.forward = hitSent.normal;
-                transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-                forwardSpeed = runSpeed;
-                hangTimer = hangTime;
-                ySpeed = jumpForce;
-            }
-        }
+        Debug.Log("Colision");
     }
+
+    //void WallJump(Collider2D  )
+    // {
+
+    //Debug.Log("HIT");
+    // Check with the player is on the ground 
+    // and if the player is colliding with a wall
+    //if (!onGround && hitSent.normal.y < 0.1f)
+    //{
+    //    if (Input.GetButtonDown("Fire1"))
+    //    {
+    //        // Change the character direction
+    //        transform.forward = hitSent.normal;
+    //        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
+    //        forwardSpeed = runSpeed;
+    //        hangTimer = hangTime;
+    //        ySpeed = jumpForce;
+    //    }
+    //}
+    // }
+
 }
