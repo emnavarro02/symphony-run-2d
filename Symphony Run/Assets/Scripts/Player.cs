@@ -1,71 +1,85 @@
-﻿using System.Collections;
+﻿/**
+ * Created by Emerson Navarro
+ * 05/10/2019
+ */
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-    public Rigidbody2D characterController;
-
-    [SerializeField]
-    private float gravityForce;     // Gravity   
-    private float ySpeed;
-    public float gravityModifier;
+    private Rigidbody2D characterController; // The character RigidBody component 
 
     [SerializeField]
-    private float forwardSpeed;     // Player's forward moviment to 
+    private float gravityForce = 9.8f;    // Gravity   
+    private float ySpeed;                 // Jump speed resultant
+    
+    [SerializeField]
+    private float gravityModifier = 50f;  // Apply different gravity based on the hangTimer
+    [SerializeField]
+    private float hangTime = 0.3f;        // Controls the maximum high the character can reach
+    private float hangTimer;              // Controls how much time the jump button is pressed
+
+    private float forwardSpeed;           // Controls the current Player's moviment speed in the "X" direction
+        
+    [SerializeField]
+    private Transform groundCheck;   // Placeholder used to identify if the player is on ground
+    [SerializeField]
+    private Transform frontCheck;    // Placeholder used to identify if the player is hitting a wall
 
     [SerializeField]
-    public Transform groundCheck;
+    private float groundCheckRadius = 0.1f;  
 
     [SerializeField]
-    public float groundCheckRadius;
+    private LayerMask whatIsGround;  // Layer Mask Ground (8); 
+   
+    [SerializeField]
+    private float runSpeed = 3f;     // Changes the speed to the player to run
 
     [SerializeField]
-    public LayerMask whatIsGround;
+    private float lerpTime = 1f;     // Amount of time that it takes from the current speed till the runSpeed
 
+    
     [SerializeField]
-    public int jumpForce;
+    private int jumpForce = 8;       // Initial jump force. Affects ySpeed.
+    [SerializeField]
+    private int onWall;              // Check if the player is hitinhg a wall
 
-    public float hangTime;
-    public float hangTimer;
+    private bool facingRight = true; // Check if the players sprite is facing to the right direction.
+    private bool onGround;           // Check if the player is on Ground
 
-    public Quaternion myRotation;
-
-    public float runSpeed;
-
-    public float lerpTime;
-
-    public float Timer;
-    public bool onGround;
-
-    // Start is called before the first frame update
+    private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
+                                                      
     void Start()
     {
         characterController = GetComponent<Rigidbody2D>();
-        myRotation = transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update()
+    {        
+        checkWallCollisions();
+        isGrounded();
     }
 
     private void FixedUpdate()
     {
         CustomGravity();
-        isGrounded();
-        Jump();
-       // GroundLanding();
+        GroundLanding();
+        isJumping();
         ForwardMovement();
         SpeedApply();
-
     }
 
     void isGrounded()
     {
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+    }
+
+    void checkWallCollisions()
+    {
+        onWall = Physics2D.OverlapPointNonAlloc(frontCheck.position, results, whatIsGround);
     }
 
     void CustomGravity()
@@ -74,37 +88,52 @@ public class Player : MonoBehaviour
         ySpeed -= gravityForce * Time.deltaTime;
     }
 
-    private void Jump()
+    private void isJumping()
     {
-        
         if (Input.GetKey(KeyCode.Space))
         {
-            // Debug.Log("JUMP");
+            Debug.Log("isJumping");
             if (onGround)
             {
-                hangTimer = hangTime;
-                ySpeed = jumpForce;
+                Debug.Log("Is on Ground. Jump");
+                Jump();
             }
             else
             {
-                if (hangTimer > 0)
+                Debug.Log("is jumping but not on ground");
+                if (onWall > 0 )
                 {
-                    hangTimer -= Time.deltaTime;
-                    ySpeed += gravityModifier * hangTimer * Time.deltaTime;
+                    Debug.Log("Colliding with wall");
+                    WallJump();
                 }
             }
-        } 
+        }
+    }
+
+    private void Jump()
+    {
+        if (onGround)
+        {
+            hangTimer = hangTime;
+            ySpeed = jumpForce;
+        }
+        else
+        {
+            if (hangTimer > 0)
+            {
+                hangTimer -= Time.deltaTime;
+                ySpeed += gravityModifier * hangTimer * Time.deltaTime;
+            }
+        }
     }
 
     void ForwardMovement()
     {
-        Timer = Time.deltaTime;
         if (onGround)
         {
             if (forwardSpeed <= runSpeed - .1f || forwardSpeed >= runSpeed + .1f)
             {
                 forwardSpeed = Mathf.Lerp(forwardSpeed, runSpeed, lerpTime);
-                // Debug.Log("Forward Speed: " + forwardSpeed);
             }
             else
             {
@@ -116,32 +145,36 @@ public class Player : MonoBehaviour
     void SpeedApply()
     {
         characterController.velocity = new Vector2(forwardSpeed, characterController.velocity.y); // Controls the speed in the X direction
-        characterController.velocity = new Vector2(characterController.velocity.x, ySpeed);                        // Controls the speed in the Y direction
+        characterController.velocity = new Vector2(characterController.velocity.x, ySpeed);       // Controls the speed in the Y direction
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void WallJump()
     {
-        Debug.Log("Colision");
+        Flip();
+        forwardSpeed = forwardSpeed * -1;
+        transform.rotation = Quaternion.Euler(new Vector2(0, transform.rotation.eulerAngles.y));
+        hangTimer = hangTime;
+        ySpeed = jumpForce;
+
     }
 
-    //void WallJump(Collider2D  )
-    // {
+    void Flip()
+     {
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.y += 180f;
+        transform.localEulerAngles = rotation;
+        facingRight = !facingRight;
+    }
 
-    //Debug.Log("HIT");
-    // Check with the player is on the ground 
-    // and if the player is colliding with a wall
-    //if (!onGround && hitSent.normal.y < 0.1f)
-    //{
-    //    if (Input.GetButtonDown("Fire1"))
-    //    {
-    //        // Change the character direction
-    //        transform.forward = hitSent.normal;
-    //        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y, 0));
-    //        forwardSpeed = runSpeed;
-    //        hangTimer = hangTime;
-    //        ySpeed = jumpForce;
-    //    }
-    //}
-    // }
+    void GroundLanding()
+    {
+        if (onGround)
+        {
+            if (!facingRight)
+            {
+                Flip();
+            }
+        }
+    }
 
 }
