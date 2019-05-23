@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteScript : MonoBehaviour
+public class ClaveScript : MonoBehaviour
 {
     private GameManager gameManager;
-
-    private void Awake()
-    {
-
-        gameManager = FindObjectOfType<GameManager>();
-    }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +22,7 @@ public class NoteScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            gameManager.IncreaseNotes();
+            gameManager.IncreaseClaves();
             Destroy(gameObject);
         }
     }

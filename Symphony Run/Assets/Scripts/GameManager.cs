@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private int score = 0;
+    private int notesScore = 0;
+
+    private int claveScore = 0;
 
     [SerializeField]
     private Text scoreText;
@@ -23,8 +25,15 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseNotes()
     {
-        score += 1; //score++;
-        scoreText.text = "Score: " + score.ToString();
-        Debug.Log("score:" + score);
+        notesScore++;
+        scoreText.text = "Notes: " + notesScore.ToString()+" Claves: " + claveScore.ToString();
+        Debug.Log("score:" + notesScore);
+    }
+
+    public void IncreaseClaves()
+    {
+        claveScore++;
+        scoreText.text = "Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString();
+        Debug.Log("score:" + notesScore);
     }
 }
