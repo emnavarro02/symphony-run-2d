@@ -30,7 +30,7 @@ public class NoteScript : MonoBehaviour
         {
             Debug.Log("collision note"+ gameManager.name);
             gameManager.IncreaseNotes();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

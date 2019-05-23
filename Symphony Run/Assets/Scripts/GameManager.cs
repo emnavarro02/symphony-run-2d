@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseNotes()
     {
         score += 1; //score++;
-        // scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
         Debug.Log("score:" + score);
     }
 }
