@@ -15,4 +15,16 @@ public class DeadZone : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("muriooo");
+            collision.GetComponent<Player>().Die();
+                //GetComponent<Player>().D;
+            //Destroy(gameObject);
+        }
+    }
 }
