@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    private GameManager gameManager;
     private Rigidbody2D characterController; // The character RigidBody component 
 
     [SerializeField]
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -179,6 +182,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        gameManager.PlayDieMusic();
         Destroy(gameObject);
     }
 

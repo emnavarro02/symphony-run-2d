@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Text scoreText;
+
+    [SerializeField]
+    private AudioClip dieMusic;
+
+    private AudioSource myAudioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,4 +41,11 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString();
         Debug.Log("score:" + notesScore);
     }
+
+    public void PlayDieMusic()
+    {
+        myAudioSource.PlayOneShot(dieMusic);
+    }
+
+
 }
