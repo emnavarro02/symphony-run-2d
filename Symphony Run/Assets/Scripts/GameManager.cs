@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseNotes()
     {
-        score++;
-        scoreText.text = "Score: " + score.ToString();
+        score += 1; //score++;
+        // scoreText.text = "Score: " + score.ToString();
         Debug.Log("score:" + score);
     }
 }

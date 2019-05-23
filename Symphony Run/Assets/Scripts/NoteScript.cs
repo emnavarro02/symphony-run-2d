@@ -8,6 +8,7 @@ public class NoteScript : MonoBehaviour
 
     private void Awake()
     {
+
         gameManager = FindObjectOfType<GameManager>();
     }
     // Start is called before the first frame update
