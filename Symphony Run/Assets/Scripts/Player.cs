@@ -92,18 +92,18 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("isJumping");
+            //Debug.Log("isJumping");
             if (onGround)
             {
-                Debug.Log("Is on Ground. Jump");
+                //Debug.Log("Is on Ground. Jump");
                 Jump();
             }
             else
             {
-                Debug.Log("is jumping but not on ground");
+                //Debug.Log("is jumping but not on ground");
                 if (onWall > 0 )
                 {
-                    Debug.Log("Colliding with wall");
+                    //Debug.Log("Colliding with wall");
                     WallJump();
                 }
             }
