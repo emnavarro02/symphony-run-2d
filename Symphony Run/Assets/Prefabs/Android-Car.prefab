@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2665773113812297732}
   m_Layer: 0
   m_Name: Android-Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  runSpeed: 3
+  runSpeed: 2
   lerpTime: 1
   jumpForce: 8
   onWall: 0
