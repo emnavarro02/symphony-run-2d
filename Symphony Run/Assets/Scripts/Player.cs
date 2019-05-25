@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         CheckWallCollisions();
         IsGrounded();
     }
@@ -97,24 +97,26 @@ public class Player : MonoBehaviour
 
     private void IsJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
+        //if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
         {
-            //Debug.Log("isJumping");
-            if (onGround)
-            {
-                //Debug.Log("Is on Ground. Jump");
-                Jump();
-            }
-            else
-            {
-                //Debug.Log("is jumping but not on ground");
-                if (onWall > 0 )
+                //Debug.Log("isJumping");
+                if (onGround)
                 {
-                    //Debug.Log("Colliding with wall");
-                    WallJump();
+                    //Debug.Log("Is on Ground. Jump");
+                    Jump();
                 }
-            }
-        }
+                else
+                {
+                    //Debug.Log("is jumping but not on ground");
+                    if (onWall > 0)
+                    {
+                        //Debug.Log("Colliding with wall");
+                        WallJump();
+                    }
+                }
+           
+        }     
     }
 
     private void Jump()

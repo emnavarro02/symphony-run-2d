@@ -12,20 +12,16 @@ public class LevelManager : MonoBehaviour
         public string levelText;
         public int isUnlocked; //if 0 = locked; if 1 = unlocked
         public bool isInteractable;
-
-       // public Button.ButtonClickedEvent OnClickEvent;
     }
 
     public GameObject levelButton;
     public Transform spacer;
     public List<Level> levelList;
     
-
-
     // Start is called before the first frame update
     void Start()
     {
-        //DeleteAll();
+        // DeleteAll();
         FillList();
     }
 
