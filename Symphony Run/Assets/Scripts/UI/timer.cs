@@ -10,7 +10,10 @@ public class timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //unlock next levels
         PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+
+        // Get score to show stars.
         PlayerPrefs.SetInt("Level1_score", score);
         StartCoroutine(Time());
     }
@@ -23,12 +26,7 @@ public class timer : MonoBehaviour
 
     IEnumerator Time()
     {
-        yield return new WaitForSeconds(10f);
-        //SceneManager.LoadScene(2);
-
-        //TODO: use SceneManager
-
-        //Back to the main screen
-        Application.LoadLevel(0);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(0);
     }
 }

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // DeleteAll();
+        //DeleteAll();
         FillList();
     }
 
@@ -50,7 +49,7 @@ public class LevelManager : MonoBehaviour
             button.unlocked = level.isUnlocked;
             button.GetComponent<Button>().interactable = level.isInteractable;
 
-            button.GetComponent<Button>().onClick.AddListener(() => loadLevels("Level" + button.LevelText.text));
+            button.GetComponent<Button>().onClick.AddListener(() => LoadLevels("Level" + button.LevelText.text));
 
             Debug.Log("LevelText: " + button.LevelText.text);
             Debug.Log("Value: " + PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score"));
@@ -75,24 +74,15 @@ public class LevelManager : MonoBehaviour
 
     void SaveAll()
     {
-        //if (PlayerPrefs.HasKey("Level1"))
-        //{
-        //    return;
-        //}
-        //else
+        GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
+
+        foreach (GameObject btn in allButtons)
         {
-            GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
+            LevelButton button = btn.GetComponent<LevelButton>();
 
-            foreach (GameObject btn in allButtons)
-            {
-                LevelButton button = btn.GetComponent<LevelButton>();
-
-                //Store Unlocked state
-                PlayerPrefs.SetInt("Level" + button.LevelText.text, button.unlocked);
-            }
+            //Store Unlocked state
+            PlayerPrefs.SetInt("Level" + button.LevelText.text, button.unlocked);
         }
-
-
     }
 
     void DeleteAll()
@@ -100,10 +90,11 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    void loadLevels(string value)
+    void LoadLevels(string value)
     {
         //Use scence manager
-        Application.LoadLevel(value);
+        SceneManager.LoadScene(value);
+        
     }
 
 }
