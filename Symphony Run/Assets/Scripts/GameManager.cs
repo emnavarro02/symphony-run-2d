@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip dieMusic;
 
+    [SerializeField]
+    private AudioClip firstLevelMusic;
+
     private AudioSource myAudioSource;
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,11 @@ public class GameManager : MonoBehaviour
     public void PlayDieMusic()
     {
         myAudioSource.PlayOneShot(dieMusic);
+    }
+
+    public void PlayFirstLevelMusic()
+    {
+        myAudioSource.PlayOneShot(firstLevelMusic);
     }
 
     public void EndLevel()

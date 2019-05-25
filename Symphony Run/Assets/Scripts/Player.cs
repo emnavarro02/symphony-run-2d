@@ -53,7 +53,11 @@ public class Player : MonoBehaviour
     private bool onGround;           // Check if the player is on Ground
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
-                                                      
+
+    private float life = 100f;
+
+    private bool isAlive = true;
+
     void Start()
     {
         characterController = GetComponent<Rigidbody2D>();
@@ -175,6 +179,24 @@ public class Player : MonoBehaviour
             if (!facingRight)
             {
                 Flip();
+            }
+        }
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        if (isAlive)
+        {
+            life -= damage;
+            if (life < 0)
+            {
+                life = 0;
+            }
+
+            if (life == 0)
+            {
+                Die();
             }
         }
     }
