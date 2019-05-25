@@ -42,16 +42,25 @@ public class GameManager : MonoBehaviour
         myAudioSource.PlayOneShot(dieMusic);
     }
 
-    public void EndLevel()
+    public void EndLevel(bool died)
     {
-       //if collected all the claves, unlock next level
-       if (claveScore >= 3)
+        if (!died)
         {
-            //unlock next levels
-            PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+            //if collected all the claves, unlock next level
+            if (claveScore >= 3)
+            {
+                //unlock next levels
+                PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+            }
+            
+            if (PlayerPrefs.GetInt("Level1_score") < claveScore)
+            {
+                // Get score to show stars.
+                PlayerPrefs.SetInt("Level1_score", claveScore);
+            }
+
         }
-        // Get score to show stars.
-        PlayerPrefs.SetInt("Level1_score", claveScore);
+
         SceneManager.LoadScene(0);
     }
 }
