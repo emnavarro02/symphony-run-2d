@@ -6,17 +6,12 @@ public class DeadZone : MonoBehaviour
 {
     //
     private GameManager gameManager;
+    private bool dead = false;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>(); ;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +21,10 @@ public class DeadZone : MonoBehaviour
         {
             Debug.Log("muriooo");
             collision.GetComponent<Player>().Die();
-            gameManager.EndLevel();
-                //GetComponent<Player>().D;
+
+            dead = true;
+            gameManager.EndLevel(dead);
+            //GetComponent<Player>().D;
             //Destroy(gameObject);
         }
     }
