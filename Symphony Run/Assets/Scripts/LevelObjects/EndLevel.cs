@@ -18,7 +18,7 @@ public class EndLevel : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Call endlevel
-            gameManager.EndLevel();
+            gameManager.EndLevel(false);
         }
     }
 }
