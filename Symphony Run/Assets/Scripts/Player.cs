@@ -62,25 +62,25 @@ public class Player : MonoBehaviour
 
     private void Update()
     {        
-        checkWallCollisions();
-        isGrounded();
+        CheckWallCollisions();
+        IsGrounded();
     }
 
     private void FixedUpdate()
     {
         CustomGravity();
         GroundLanding();
-        isJumping();
+        IsJumping();
         ForwardMovement();
         SpeedApply();
     }
 
-    void isGrounded()
+    void IsGrounded()
     {
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
-    void checkWallCollisions()
+    void CheckWallCollisions()
     {
         onWall = Physics2D.OverlapPointNonAlloc(frontCheck.position, results, whatIsGround);
     }
@@ -91,9 +91,9 @@ public class Player : MonoBehaviour
         ySpeed -= gravityForce * Time.deltaTime;
     }
 
-    private void isJumping()
+    private void IsJumping()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //Debug.Log("isJumping");
             if (onGround)
@@ -158,7 +158,6 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector2(0, transform.rotation.eulerAngles.y));
         hangTimer = hangTime;
         ySpeed = jumpForce;
-
     }
 
     void Flip()
