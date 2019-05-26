@@ -42,11 +42,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayDieMusic()
     {
+        Debug.Log("llega");
         myAudioSource.PlayOneShot(dieMusic);
     }
 
     public void PlayFirstLevelMusic()
     {
+        //myAudioSource
         myAudioSource.PlayOneShot(firstLevelMusic);
     }
 

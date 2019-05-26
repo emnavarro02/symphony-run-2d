@@ -19,7 +19,7 @@ public class DeadZone : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("muriooo");
+
             collision.GetComponent<Player>().Die();
 
             dead = true;
