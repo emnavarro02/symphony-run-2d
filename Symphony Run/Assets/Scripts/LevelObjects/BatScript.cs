@@ -16,7 +16,7 @@ public class BatScript : MonoBehaviour
     [SerializeField]
     private Transform bat;
 
-    private float distanceLimit = 10.0f;
+    private float distanceLimit = 4.0f;
 
     private float maxDistanceFromStart = 50f;
 
@@ -42,7 +42,7 @@ public class BatScript : MonoBehaviour
             //light.enabled = true;
             Debug.Log("proximooooooooooooooo");
             //myRigidbody2D.velocity = new Vector2(10f, myRigidbody2D.velocity.y);
-            transform.position = new Vector2(transform.position.x + (-2f * Time.deltaTime),
+            transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime),
      transform.position.y);
 
         }
