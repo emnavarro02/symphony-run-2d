@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private Transform frontCheck;    // Placeholder used to identify if the player is hitting a wall
 
     [SerializeField]
-    private float groundCheckRadius = 0.1f;  
+    private float groundCheckRadius = 0.01f;  
 
     [SerializeField]
     private LayerMask whatIsGround;  // Layer Mask Ground (8); 
@@ -51,8 +51,11 @@ public class Player : MonoBehaviour
 
     private bool facingRight = true; // Check if the players sprite is facing to the right direction.
 
+    //[SerializeField]
+    //private bool onGround;           // Check if the player is on Ground
+
     [SerializeField]
-    private bool onGround;           // Check if the player is on Ground
+    private int onGround;
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
 
@@ -70,23 +73,28 @@ public class Player : MonoBehaviour
     }
 
     private void Update()
-    {        
-        CheckWallCollisions();
-        IsGrounded();
-    }
-
-    private void FixedUpdate()
     {
         CustomGravity();
-        GroundLanding();
+       
         IsJumping();
         ForwardMovement();
         SpeedApply();
     }
 
-    void IsGrounded()
+    private void FixedUpdate()
     {
-        onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        
+        CheckIfIsOnGround();
+        GroundLanding();
+        CheckWallCollisions();
+        
+    }
+
+    void CheckIfIsOnGround()
+    {
+        //onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        onGround = Physics2D.OverlapPointNonAlloc(groundCheck.position, results, whatIsGround);
+        print("Is Grounded?: "+ onGround);
     }
 
     void CheckWallCollisions()
@@ -106,14 +114,14 @@ public class Player : MonoBehaviour
         {
             myAnimator.SetBool("onGround", false);
             //Debug.Log("isJumping");
-            if (onGround)
+            if (onGround > 0)
             {
-                //Debug.Log("Is on Ground. Jump");
+                Debug.Log("Is on Ground. Jump");
                 Jump();
             }
             else
             {
-                //Debug.Log("is jumping but not on ground");
+                Debug.Log("is jumping but not on ground");
                 if (onWall > 0 )
                 {
                     //Debug.Log("Colliding with wall");
@@ -123,9 +131,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    
+
     private void Jump()
     {
-        if (onGround)
+        if (onGround > 0)
         {
             hangTimer = hangTime;
             ySpeed = jumpForce;
@@ -142,7 +152,7 @@ public class Player : MonoBehaviour
 
     void ForwardMovement()
     {
-        if (onGround)
+        if (onGround > 0)
         {
             if (forwardSpeed <= runSpeed - .1f || forwardSpeed >= runSpeed + .1f)
             {
@@ -168,6 +178,7 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector2(0, transform.rotation.eulerAngles.y));
         hangTimer = hangTime;
         ySpeed = jumpForce;
+        GroundLanding();
     }
 
     void Flip()
@@ -180,12 +191,12 @@ public class Player : MonoBehaviour
 
     void GroundLanding()
     {
-        if (onGround)
+        if (onGround > 0)
         {
             myAnimator.SetBool("onGround", true);
-            print("GROUNDED");
             if (!facingRight)
             {
+               
                 Flip();
             }
         }

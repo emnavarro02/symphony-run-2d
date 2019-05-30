@@ -69,7 +69,7 @@ public class BatScript : MonoBehaviour
             xPosition = transform.position.x;
         }
         float difference = xPosition - transform.position.x;
-        Debug.Log("dif: "+difference);
+        // Debug.Log("dif: "+difference);
         if (difference<3)
         {
             transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime), transform.position.y);
@@ -83,6 +83,6 @@ public class BatScript : MonoBehaviour
             }
         }
         
-        Debug.Log(xPosition+ "-----"+ transform.position.x);
+        // Debug.Log(xPosition+ "-----"+ transform.position.x);
     }
 }
