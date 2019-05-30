@@ -16,13 +16,18 @@ public class BatScript : MonoBehaviour
     [SerializeField]
     private Transform bat;
 
-    private float distanceLimit = 4.0f;
-
-    private float maxDistanceFromStart = 50f;
-
-    private int startingPosition = 20;
-
     private Rigidbody2D myRigidbody2D;
+
+    [SerializeField]
+    private float xPosition = 0;
+    private int yPosition = 0;
+
+    private float x=0;
+    private float y=0;
+    private float z=0;
+    private bool move = false;
+    private bool facingRight = true;
+
 
     void Start()
     {
@@ -37,19 +42,8 @@ public class BatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(bat.position, player.position) < distanceLimit)
-        {
-            //light.enabled = true;
-            Debug.Log("proximooooooooooooooo");
-            //myRigidbody2D.velocity = new Vector2(10f, myRigidbody2D.velocity.y);
-            transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime),
-     transform.position.y);
 
-        }
-        else
-        {
-            //light.enabled = false;
-        }
+        moveToThePlayer();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,5 +52,37 @@ public class BatScript : MonoBehaviour
         {
             other.GetComponent<Player>().TakeDamage(damage);
         }
+    }
+
+    private void Flip()
+    {
+        Vector3 myRotation = transform.localEulerAngles;
+        myRotation.y += 180f;
+        transform.localEulerAngles = myRotation;
+        facingRight = !facingRight;
+    }
+
+    public void moveToThePlayer()
+    {
+        if (xPosition==0)
+        {
+            xPosition = transform.position.x;
+        }
+        float difference = xPosition - transform.position.x;
+        Debug.Log("dif: "+difference);
+        if (difference<3)
+        {
+            transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime), transform.position.y);
+
+            //xPosition = 0;
+        }
+        if (difference>3)
+        {
+            if (facingRight) {
+                Flip();
+            }
+        }
+        
+        Debug.Log(xPosition+ "-----"+ transform.position.x);
     }
 }
