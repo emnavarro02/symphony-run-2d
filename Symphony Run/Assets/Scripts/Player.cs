@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     private int onWall;              // Check if the player is hitinhg a wall
 
     private bool facingRight = true; // Check if the players sprite is facing to the right direction.
+
+    [SerializeField]
     private bool onGround;           // Check if the player is on Ground
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
@@ -58,9 +60,12 @@ public class Player : MonoBehaviour
 
     private bool isAlive = true;
 
+    private Animator myAnimator;
+
     void Start()
     {
         characterController = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -99,6 +104,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            myAnimator.SetBool("onGround", false);
             //Debug.Log("isJumping");
             if (onGround)
             {
@@ -176,6 +182,8 @@ public class Player : MonoBehaviour
     {
         if (onGround)
         {
+            myAnimator.SetBool("onGround", true);
+            print("GROUNDED");
             if (!facingRight)
             {
                 Flip();
