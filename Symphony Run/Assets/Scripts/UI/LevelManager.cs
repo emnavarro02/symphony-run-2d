@@ -47,8 +47,8 @@ public class LevelManager : MonoBehaviour
 
             button.GetComponent<Button>().onClick.AddListener(() => LoadLevels("Level" + button.LevelText.text));
 
-            Debug.Log("LevelText: " + button.LevelText.text);
-            Debug.Log("Value: " + PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score"));
+            //Debug.Log("LevelText: " + button.LevelText.text);
+            //Debug.Log("Value: " + PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score"));
             if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") >= 1)
             {
                 button.Star1.SetActive(true);

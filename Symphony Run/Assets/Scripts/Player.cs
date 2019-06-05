@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
 
+    [SerializeField]
     private float life = 100f;
 
     private bool isAlive = true;
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
     {
         //onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         onGround = Physics2D.OverlapPointNonAlloc(groundCheck.position, results, whatIsGround);
-        print("Is Grounded?: "+ onGround);
+        //print("Is Grounded?: "+ onGround);
     }
 
     void CheckWallCollisions()
@@ -116,12 +117,12 @@ public class Player : MonoBehaviour
             //Debug.Log("isJumping");
             if (onGround > 0)
             {
-                Debug.Log("Is on Ground. Jump");
+                //Debug.Log("Is on Ground. Jump");
                 Jump();
             }
             else
             {
-                Debug.Log("is jumping but not on ground");
+                //Debug.Log("is jumping but not on ground");
                 if (onWall > 0 )
                 {
                     //Debug.Log("Colliding with wall");
@@ -219,10 +220,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float getPlayerLife()
+    {
+        return life;
+    }
+
     public void Die()
     {
+        ExecuteAfterTime(10);
         gameManager.PlayDieMusic();
+
         Destroy(gameObject);
     }
 
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+    }
+
+   
 }
