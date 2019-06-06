@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private int claveScore = 0;
 
-    private float playerLife = 0;
+    private int playerLife = 0;
 
     [SerializeField]
     private Text scoreText;
@@ -145,10 +145,20 @@ public class GameManager : MonoBehaviour
         }
         if (playerLife == 1)
         {
-            hearts[0].SetActive(false);
+            for (int i = 0; i < 9; i++)
+            {
+                if (i == 1)
+                {
+                    hearts[i].SetActive(true);
+                }
+                else
+                {
+                    hearts[i].SetActive(false);
+                }
+            }
         }
         if (playerLife == 0)
-        {
+        { 
             hearts[1].SetActive(false);
         }
     }

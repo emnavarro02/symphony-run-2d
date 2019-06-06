@@ -6,7 +6,7 @@ public class BatScript : MonoBehaviour
 {
 
     [SerializeField]
-    private float damage = 1f;
+    private int damage = 1;
 
     [SerializeField]
     private float life = 50f;
