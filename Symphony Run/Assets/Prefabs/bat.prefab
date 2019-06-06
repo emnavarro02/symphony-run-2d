@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2220fb31562d4fbdb2775fd30e199e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   life: 50
   player: {fileID: 0}
   bat: {fileID: 830358940541758139}
