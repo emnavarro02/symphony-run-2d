@@ -23,7 +23,7 @@ public class DeadZone : MonoBehaviour
             collision.GetComponent<Player>().Die();
 
             dead = true;
-            ExecuteAfterTime(10);
+
             Debug.Log(" luego del delay");
             gameManager.EndLevel(dead);
             //GetComponent<Player>().D;
@@ -31,10 +31,5 @@ public class DeadZone : MonoBehaviour
         }
     }
 
-    IEnumerator ExecuteAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
 
-        // Code to execute after the delay
-    }
 }

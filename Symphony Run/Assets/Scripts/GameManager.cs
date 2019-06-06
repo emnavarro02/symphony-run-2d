@@ -26,10 +26,26 @@ public class GameManager : MonoBehaviour
 
     private Player player;
 
+    [SerializeField]
+    private GameObject[] hearts;
+
     void Start()
     {
         myAudioSource = GetComponent<AudioSource>();
         player = FindObjectOfType<Player>();
+        Scene scene = SceneManager.GetActiveScene();
+
+        Debug.Log(scene.buildIndex);
+        playCorrespondingMusic(scene.buildIndex);
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void playCorrespondingMusic(int level)
+    {
+        if (level==1)
+        {
+            PlayFirstLevelMusic();
+        }
     }
 
     public void IncreaseNotes()
@@ -62,16 +78,18 @@ public class GameManager : MonoBehaviour
 
     public void PlayDieMusic()
     {
-        Debug.Log("llega");
+
+        //myAudioSource.PlayOneShot(dieMusic);
+        myAudioSource.Stop();
         myAudioSource.PlayOneShot(dieMusic);
+        //StartCoroutine(PlayDieMusicUntilTheEnd());
     }
 
     public void PlayFirstLevelMusic()
     {
         //myAudioSource
-        //myAudioSource.PlayOneShot(firstLevelMusic);
-        StartCoroutine(PlayDieMusicUntilTheEnd());
-
+        myAudioSource.PlayOneShot(firstLevelMusic);
+        print("music played");
     }
 
     public void EndLevel(bool died)
@@ -101,7 +119,37 @@ public class GameManager : MonoBehaviour
         myAudioSource.PlayOneShot(firstLevelMusic);
 
         //yield return new WaitWhile(() => source.isPlaying);
-        yield return new WaitWhile(() => myAudioSource.isVirtual);
+        yield return new WaitWhile(() => myAudioSource.isPlaying);
         //do something
+    }
+
+    public void ManageLifes()
+    {
+        playerLife= player.getPlayerLife();
+        if (playerLife == 5)
+        {
+            hearts[6].SetActive(false);
+
+        }
+        if (playerLife == 4)
+        {
+            hearts[7].SetActive(false);
+        }
+        if (playerLife == 3)
+        {
+            hearts[3].SetActive(false);
+        }
+        if (playerLife == 2)
+        {
+            hearts[4].SetActive(false);
+        }
+        if (playerLife == 1)
+        {
+            hearts[0].SetActive(false);
+        }
+        if (playerLife == 0)
+        {
+            hearts[1].SetActive(false);
+        }
     }
 }

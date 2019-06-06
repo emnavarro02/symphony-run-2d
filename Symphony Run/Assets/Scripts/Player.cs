@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
 
     [SerializeField]
-    private float life = 100f;
+    private float life = 6f;
 
     private bool isAlive = true;
 
@@ -207,7 +207,9 @@ public class Player : MonoBehaviour
     {
         if (isAlive)
         {
+
             life -= damage;
+            gameManager.ManageLifes();
             if (life < 0)
             {
                 life = 0;
@@ -227,7 +229,8 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        ExecuteAfterTime(10);
+
+
         gameManager.PlayDieMusic();
 
         Destroy(gameObject);

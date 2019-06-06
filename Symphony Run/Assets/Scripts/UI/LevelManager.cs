@@ -17,12 +17,14 @@ public class LevelManager : MonoBehaviour
     public GameObject levelButton;
     public Transform spacer;
     public List<Level> levelList;
-    
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         // DeleteAll();
         FillList();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void FillList()
@@ -37,6 +39,7 @@ public class LevelManager : MonoBehaviour
             if(PlayerPrefs.GetInt("Level" + button.LevelText.text) == 1)
             {
                 //set Level to be unlocked
+                //gameManager.PlayFirstLevelMusic();
                 level.isUnlocked = 1;
                 level.isInteractable = true;
             }
