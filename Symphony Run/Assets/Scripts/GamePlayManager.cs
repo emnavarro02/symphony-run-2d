@@ -10,6 +10,9 @@ public class GamePlayManager : MonoBehaviour
     //[SerializeField]
     private int notesScore = 0;
     private int claveScore = 0;
+    private int clavesBonusScore = 0;
+    [SerializeField]
+    private int clavcesNumberToBonus = 5;
     private int playerLife = 6;
 
     [SerializeField]
@@ -43,11 +46,18 @@ public class GamePlayManager : MonoBehaviour
     public void IncreaseNotes()
     {
         notesScore++;
+        clavesBonusScore++;
         Debug.Log("score:" + notesScore);
         UpdateTextElements();
         
         //review
         gameManager.setOverallNotesScore(notesScore);
+        if (clavesBonusScore == clavcesNumberToBonus)
+        {
+            playerLife = playerLife + 1;
+            ManageLifes();
+            clavesBonusScore = 0;
+        }
     }
 
     public void IncreaseClaves()
@@ -90,38 +100,97 @@ public class GamePlayManager : MonoBehaviour
         //playerLife = player.getPlayerLife();
         if (playerLife == 5)
         {
+            hearts[0].SetActive(true);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(true);
+            hearts[4].SetActive(true);
+            hearts[5].SetActive(true);
             hearts[6].SetActive(false);
+            hearts[7].SetActive(true);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
 
         }
         if (playerLife == 4)
         {
+            hearts[0].SetActive(true);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(true);
+            hearts[4].SetActive(true);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(false);
             hearts[7].SetActive(false);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
         }
         if (playerLife == 3)
         {
+            hearts[0].SetActive(true);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
             hearts[3].SetActive(false);
+            hearts[4].SetActive(true);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(false);
+            hearts[7].SetActive(false);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
         }
         if (playerLife == 2)
         {
+            hearts[0].SetActive(true);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(false);
             hearts[4].SetActive(false);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(false);
+            hearts[7].SetActive(false);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
         }
         if (playerLife == 1)
         {
-            for (int i = 0; i < 9; i++)
-            {
-                if (i == 1)
-                {
-                    hearts[i].SetActive(true);
-                }
-                else
-                {
-                    hearts[i].SetActive(false);
-                }
-            }
+            hearts[0].SetActive(false);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(false);
+            hearts[4].SetActive(false);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(false);
+            hearts[7].SetActive(false);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
         }
         if (playerLife == 0)
-        { 
+        {
+            hearts[0].SetActive(false);
             hearts[1].SetActive(false);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(false);
+            hearts[4].SetActive(false);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(false);
+            hearts[7].SetActive(false);
+            hearts[8].SetActive(true);
+            hearts[9].SetActive(true);
+        }
+    }
+
+    private void NewMethod(int inactive)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (i == 1)
+            {
+                hearts[i].SetActive(true);
+            }
+            else
+            {
+                hearts[i].SetActive(false);
+            }
         }
     }
 }
