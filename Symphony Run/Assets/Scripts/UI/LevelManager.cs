@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour
     // Controls the Music between levels
     private GameManager gameManager;
     private MusicManager musicManager;
+    private Player player;
+
 
     // Start is called before the first frame update
     void Start()
@@ -115,8 +117,9 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(value);
 
             MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-
+            
             PlayCorrespondingMusic(levelNumber);
+        GetPersistedData();
         }
 
 
@@ -144,5 +147,10 @@ public class LevelManager : MonoBehaviour
         //MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
         PlayCorrespondingMusic(0);
         print(Time.time);
+    }
+
+    public void GetPersistedData()
+    {
+        //player.SetPlayerLife(PlayerPrefs.GetInt("life"));
     }
 }

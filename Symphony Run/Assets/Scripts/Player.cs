@@ -58,8 +58,8 @@ public class Player : MonoBehaviour
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
 
-    [SerializeField]
-    private int life = 6;
+    //[SerializeField]
+    //private int life = 6;
 
     private bool isAlive = true;
 
@@ -206,9 +206,9 @@ public class Player : MonoBehaviour
         if (isAlive)
         {
 
-            life -= damage;
-            gamePlayManager.UpdatePlayerLife();
-            gamePlayManager.ManageLifes();
+
+            int life=gamePlayManager.UpdatePlayerLife(damage);
+
             if (life < 0)
             {
                 life = 0;
@@ -221,18 +221,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int getPlayerLife()
-    {
-        return life;
-    }
-
     public void Die()
     {
         //gameManager.PlayDieMusic();
         // Destroy(gameObject);
         gameManager.died = true;
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-        gameManager.EndLevel();   
+        PersistData();
+        gameManager.EndLevel();
+
+    }
+
+    public void PersistData()
+    {
+        //if (!PlayerPrefs.HasKey("notes")) {
+        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
+        PlayerPrefs.SetInt("life", gamePlayManager.GetPLayerLife());
+
+        //}
+
+        print("life valueeeee: " + PlayerPrefs.GetInt("life"));
     }
   
 }

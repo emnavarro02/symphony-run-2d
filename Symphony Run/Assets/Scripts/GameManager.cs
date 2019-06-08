@@ -14,10 +14,13 @@ public class GameManager : MonoBehaviour
 
     private int playerLife;
 
-    public bool died = false;  
+    public bool died = false;
+
+
 
 
     private static GameManager instance = null;
+
 
     public static GameManager Instance
     {
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         print("LOAD");
+
     }
 
     // Keep the overal notes collected on the game
@@ -58,6 +62,10 @@ public class GameManager : MonoBehaviour
     public void setOverallPlayerLife(int life)
     {
         playerLife = life;
+    }
+
+    public int GetNotesScore(){
+        return overallNotesScore;
     }
 
     public void EndLevel()

@@ -10,7 +10,7 @@ public class GamePlayManager : MonoBehaviour
     //[SerializeField]
     private int notesScore = 0;
     private int claveScore = 0;
-    private int playerLife = 0;
+    private int playerLife = 6;
 
     [SerializeField]
     private Text scoreText;
@@ -31,7 +31,13 @@ public class GamePlayManager : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         scoreText = GameObject.Find("Notes").GetComponent<Text>();
-        clefText  = GameObject.Find("Clef").GetComponent<Text>(); 
+        clefText  = GameObject.Find("Clef").GetComponent<Text>();
+        //if (playerLife<6)
+        //{
+            //playerLife = PlayerPrefs.GetInt("life");
+        //}
+
+        print("life:"+playerLife);
     }
 
     public void IncreaseNotes()
@@ -53,23 +59,35 @@ public class GamePlayManager : MonoBehaviour
         gameManager.setClafScore(claveScore);
     }
 
-    public void UpdatePlayerLife()
+    public int UpdatePlayerLife(int damage)
     {
-        playerLife = player.getPlayerLife();
+
+
+        playerLife -= damage;
+
+        ManageLifes();
+
         UpdateTextElements();
 
         gameManager.setOverallPlayerLife(playerLife);
+
+        return playerLife;
+    }
+
+    public int GetPLayerLife()
+    {
+        return playerLife;
     }
 
     private void UpdateTextElements()
     {
         scoreText.text = "Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + playerLife.ToString();
-        Debug.Log("Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + player.getPlayerLife().ToString());
+        Debug.Log("Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + playerLife);
     }
 
     public void ManageLifes()
     {
-        playerLife = player.getPlayerLife();
+        //playerLife = player.getPlayerLife();
         if (playerLife == 5)
         {
             hearts[6].SetActive(false);
