@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NoteScript : MonoBehaviour
 {
-    private GameManager gameManager;
+    private GamePlayManager gamePlayManager;
 
     private void Awake()
     {
 
-        gameManager = FindObjectOfType<GameManager>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class NoteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        // gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +28,7 @@ public class NoteScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            gameManager.IncreaseNotes();
+            gamePlayManager.IncreaseNotes();
             Destroy(gameObject);
         }
     }

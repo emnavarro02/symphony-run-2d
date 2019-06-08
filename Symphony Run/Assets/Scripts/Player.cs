@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 {
 
     private GameManager gameManager;
+    private GamePlayManager gamePlayManager;
+
     private Rigidbody2D characterController; // The character RigidBody component 
 
     [SerializeField]
@@ -51,9 +53,6 @@ public class Player : MonoBehaviour
 
     private bool facingRight = true; // Check if the players sprite is facing to the right direction.
 
-    //[SerializeField]
-    //private bool onGround;           // Check if the player is on Ground
-
     [SerializeField]
     private int onGround;
 
@@ -71,6 +70,7 @@ public class Player : MonoBehaviour
         characterController = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
 
     private void Update()
@@ -131,8 +131,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    
 
     private void Jump()
     {
@@ -209,7 +207,8 @@ public class Player : MonoBehaviour
         {
 
             life -= damage;
-            gameManager.ManageLifes();
+            gamePlayManager.UpdatePlayerLife();
+            gamePlayManager.ManageLifes();
             if (life < 0)
             {
                 life = 0;
@@ -229,20 +228,10 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-
-
-        gameManager.PlayDieMusic();
-
-        Destroy(gameObject);
+        //gameManager.PlayDieMusic();
+        // Destroy(gameObject);
+        gameManager.died = true;
+        gameManager.EndLevel();
     }
-
-
-    IEnumerator ExecuteAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        // Code to execute after the delay
-    }
-
-   
+  
 }

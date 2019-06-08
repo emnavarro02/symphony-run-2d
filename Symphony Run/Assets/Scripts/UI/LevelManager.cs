@@ -17,14 +17,29 @@ public class LevelManager : MonoBehaviour
     public GameObject levelButton;
     public Transform spacer;
     public List<Level> levelList;
+
+    // Controls the Music between levels
     private GameManager gameManager;
+    private MusicManager musicManager;
 
     // Start is called before the first frame update
     void Start()
     {
         // DeleteAll();
         FillList();
+
         gameManager = FindObjectOfType<GameManager>();
+        MusicManager musicManager = FindObjectOfType<MusicManager>();
+
+        if (gameManager.died)
+        {
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.DieMusicAudio());
+        }
+
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel1();
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
+
+        // print(gameManager.died.ToString);
     }
 
     void FillList()
@@ -35,7 +50,7 @@ public class LevelManager : MonoBehaviour
             LevelButton button = newButton.GetComponent<LevelButton>();
             button.LevelText.text = level.levelText;
 
-            // The Level name must be: Level, Level2
+            // The Level name must be: Levell, Level2
             if(PlayerPrefs.GetInt("Level" + button.LevelText.text) == 1)
             {
                 //set Level to be unlocked

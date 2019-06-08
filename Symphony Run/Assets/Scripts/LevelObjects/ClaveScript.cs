@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClaveScript : MonoBehaviour
 {
-    private GameManager gameManager;
+    private GamePlayManager gamePlayManager;
     // Start is called before the first frame update
     void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class ClaveScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            gameManager.IncreaseClaves();
+            gamePlayManager.IncreaseClaves();
             Destroy(gameObject);
         }
     }

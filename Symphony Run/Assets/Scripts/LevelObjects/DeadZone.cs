@@ -5,13 +5,13 @@ using UnityEngine;
 public class DeadZone : MonoBehaviour
 {
     //
-    private GameManager gameManager;
-    private bool dead = false;
+    // private GameManager gameManager;
+    // private bool dead = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>(); ;
+        // gameManager = FindObjectOfType<GameManager>(); ;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,14 +20,16 @@ public class DeadZone : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
 
+            print("Fell in a hole");
             collision.GetComponent<Player>().Die();
 
-            dead = true;
+            // dead = true;
 
-            Debug.Log(" luego del delay");
-            gameManager.EndLevel(dead);
-            //GetComponent<Player>().D;
-            //Destroy(gameObject);
+            // Debug.Log(" luego del delay");
+            // gameManager.died = false;
+            // gameManager.EndLevel();
+            // GetComponent<Player>().D;
+            // Destroy(gameObject);
         }
     }
 

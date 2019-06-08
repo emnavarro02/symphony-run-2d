@@ -27,11 +27,11 @@ public class BatScript : MonoBehaviour
     private float z=0;
     private bool move = false;
     private bool facingRight = true;
-    private GameManager gameManager;
+    private GamePlayManager gamePlayManager;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
 
     private void Awake()
@@ -51,7 +51,7 @@ public class BatScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().TakeDamage(damage);
-            gameManager.UpdatePlayerLife();
+            // gamePlayManager.UpdatePlayerLife();
         }
     }
 

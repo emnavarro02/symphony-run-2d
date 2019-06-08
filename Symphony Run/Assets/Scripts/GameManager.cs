@@ -6,103 +6,72 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private int notesScore = 0;
 
-    private int claveScore = 0;
+    //TODO: Persist values when game close
+    private int overallNotesScore;
 
-    private int playerLife = 0;
+    private int claveScore;
 
-    [SerializeField]
-    private Text scoreText;
+    private int playerLife;
 
-    [SerializeField]
-    private AudioClip dieMusic;
+    public bool died = false;  
 
-    [SerializeField]
-    private AudioClip firstLevelMusic;
 
-    private AudioSource myAudioSource;
-    // Start is called before the first frame update
+    private static GameManager instance = null;
 
-    private Player player;
+    public static GameManager Instance
+    {
+        get { return instance; }
+    }
 
-    [SerializeField]
-    private GameObject[] hearts;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void Start()
     {
-        myAudioSource = GetComponent<AudioSource>();
-        player = FindObjectOfType<Player>();
-        Scene scene = SceneManager.GetActiveScene();
-
-        Debug.Log(scene.buildIndex);
-        playCorrespondingMusic(scene.buildIndex);
-        DontDestroyOnLoad(gameObject);
+        print("LOAD");
     }
 
-    private void playCorrespondingMusic(int level)
+    // Keep the overal notes collected on the game
+    public void setOverallNotesScore(int notes)
     {
-        if (level==1)
-        {
-            PlayFirstLevelMusic();
-        }
+        overallNotesScore += notes;
     }
 
-    public void IncreaseNotes()
+    // the clafs on the last level
+    public void setClafScore(int clave)
     {
-        notesScore++;
-
-        Debug.Log("score:" + notesScore);
-        UpdateGeneralScores();
+        claveScore = clave;
     }
 
-    public void IncreaseClaves()
+    public void setOverallPlayerLife(int life)
     {
-        claveScore++;
-
-        Debug.Log("score:" + notesScore);
-        UpdateGeneralScores();
+        playerLife = life;
     }
 
-    public void UpdatePlayerLife()
-    {
-        playerLife = player.getPlayerLife();
-        UpdateGeneralScores();
-    }
-
-    private void UpdateGeneralScores()
-    {
-        scoreText.text = "Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + playerLife.ToString();
-        Debug.Log("Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + player.getPlayerLife().ToString());
-    }
-
-    public void PlayDieMusic()
-    {
-
-        //myAudioSource.PlayOneShot(dieMusic);
-        myAudioSource.Stop();
-        myAudioSource.PlayOneShot(dieMusic);
-        //StartCoroutine(PlayDieMusicUntilTheEnd());
-    }
-
-    public void PlayFirstLevelMusic()
-    {
-        //myAudioSource
-        myAudioSource.PlayOneShot(firstLevelMusic);
-        print("music played");
-    }
-
-    public void EndLevel(bool died)
+    public void EndLevel()
     {
         if (!died)
         {
+            print("NOT DIED: " + claveScore); 
             //if collected all the claves, unlock next level
             if (claveScore >= 3)
             {
                 //unlock next levels
                 PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
             }
-            
+
             if (PlayerPrefs.GetInt("Level1_score") < claveScore)
             {
                 // Get score to show stars.
@@ -112,54 +81,5 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(0);
-    }
-
-    IEnumerator PlayDieMusicUntilTheEnd()
-    {
-        myAudioSource.PlayOneShot(firstLevelMusic);
-
-        //yield return new WaitWhile(() => source.isPlaying);
-        yield return new WaitWhile(() => myAudioSource.isPlaying);
-        //do something
-    }
-
-    public void ManageLifes()
-    {
-        playerLife= player.getPlayerLife();
-        if (playerLife == 5)
-        {
-            hearts[6].SetActive(false);
-
-        }
-        if (playerLife == 4)
-        {
-            hearts[7].SetActive(false);
-        }
-        if (playerLife == 3)
-        {
-            hearts[3].SetActive(false);
-        }
-        if (playerLife == 2)
-        {
-            hearts[4].SetActive(false);
-        }
-        if (playerLife == 1)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (i == 1)
-                {
-                    hearts[i].SetActive(true);
-                }
-                else
-                {
-                    hearts[i].SetActive(false);
-                }
-            }
-        }
-        if (playerLife == 0)
-        { 
-            hearts[1].SetActive(false);
-        }
     }
 }
