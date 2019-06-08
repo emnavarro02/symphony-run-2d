@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class timer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
-
-    int score = 3;
+    readonly int score = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +15,6 @@ public class timer : MonoBehaviour
         // Get score to show stars.
         PlayerPrefs.SetInt("Level1_score", score);
         StartCoroutine(Time());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator Time()
