@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
@@ -29,86 +30,119 @@ public class LevelManager : MonoBehaviour
         FillList();
 
         gameManager = FindObjectOfType<GameManager>();
-        MusicManager musicManager = FindObjectOfType<MusicManager>();
+        musicManager = FindObjectOfType<MusicManager>();
+
+
 
         if (gameManager.died)
         {
             MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.DieMusicAudio());
+            StartCoroutine(Example());
+            print("diedddd");
+
         }
-
-        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel1();
-        MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
-
-        // print(gameManager.died.ToString);
-    }
-
-    void FillList()
-    {
-        foreach(var level in levelList)
+        else
         {
-            GameObject newButton = Instantiate(levelButton) as GameObject;
-            LevelButton button = newButton.GetComponent<LevelButton>();
-            button.LevelText.text = level.levelText;
-
-            // The Level name must be: Levell, Level2
-            if(PlayerPrefs.GetInt("Level" + button.LevelText.text) == 1)
-            {
-                //set Level to be unlocked
-                //gameManager.PlayFirstLevelMusic();
-                level.isUnlocked = 1;
-                level.isInteractable = true;
-            }
-
-            //update the button value
-            button.unlocked = level.isUnlocked;
-            button.GetComponent<Button>().interactable = level.isInteractable;
-
-            button.GetComponent<Button>().onClick.AddListener(() => LoadLevels("Level" + button.LevelText.text));
-
-            //Debug.Log("LevelText: " + button.LevelText.text);
-            //Debug.Log("Value: " + PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score"));
-            if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") >= 1)
-            {
-                button.Star1.SetActive(true);
-            }
-            if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") >= 2)
-            {
-                button.Star2.SetActive(true);
-            }
-            if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") == 3)
-            {
-                button.Star3.SetActive(true);
-            }
-
-            newButton.transform.SetParent(spacer);
+            PlayCorrespondingMusic(0);
         }
-
-        SaveAll();
     }
-
-    void SaveAll()
-    {
-        GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
-
-        foreach (GameObject btn in allButtons)
+        void FillList()
         {
-            LevelButton button = btn.GetComponent<LevelButton>();
+            foreach (var level in levelList)
+            {
+                GameObject newButton = Instantiate(levelButton) as GameObject;
+                LevelButton button = newButton.GetComponent<LevelButton>();
+                button.LevelText.text = level.levelText;
 
-            //Store Unlocked state
-            PlayerPrefs.SetInt("Level" + button.LevelText.text, button.unlocked);
+                // The Level name must be: Levell, Level2
+                if (PlayerPrefs.GetInt("Level" + button.LevelText.text) == 1)
+                {
+                    //set Level to be unlocked
+                    //gameManager.PlayFirstLevelMusic();
+                    level.isUnlocked = 1;
+                    level.isInteractable = true;
+                }
+
+                //update the button value
+                button.unlocked = level.isUnlocked;
+                button.GetComponent<Button>().interactable = level.isInteractable;
+
+                button.GetComponent<Button>().onClick.AddListener(() => LoadLevels("Level" + button.LevelText.text, System.Convert.ToInt32(button.LevelText.text)));
+
+                //Debug.Log("LevelText: " + button.LevelText.text);
+                //Debug.Log("Value: " + PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score"));
+                if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") >= 1)
+                {
+                    button.Star1.SetActive(true);
+
+                }
+                if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") >= 2)
+                {
+                    button.Star2.SetActive(true);
+                }
+                if (PlayerPrefs.GetInt("Level" + button.LevelText.text + "_score") == 3)
+                {
+                    button.Star3.SetActive(true);
+                }
+
+                newButton.transform.SetParent(spacer);
+            }
+
+            SaveAll();
         }
-    }
 
-    void DeleteAll()
+        void SaveAll()
+        {
+            GameObject[] allButtons = GameObject.FindGameObjectsWithTag("LevelButton");
+
+            foreach (GameObject btn in allButtons)
+            {
+                LevelButton button = btn.GetComponent<LevelButton>();
+
+                //Store Unlocked state
+                PlayerPrefs.SetInt("Level" + button.LevelText.text, button.unlocked);
+            }
+        }
+
+        void DeleteAll()
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
+        void LoadLevels(string value, int levelNumber)
+        {
+            //Use scence manager
+            SceneManager.LoadScene(value);
+
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
+
+            PlayCorrespondingMusic(levelNumber);
+        }
+
+
+        void PlayCorrespondingMusic(int level)
+        {
+            if (level == 0)
+            {
+                //MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevelManager();
+
+                MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetAudioLevelManager());
+            }
+            if (level == 1)
+            {
+                MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel1();
+                MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
+            }
+        }
+    
+
+    IEnumerator Example()
     {
-        PlayerPrefs.DeleteAll();
+        print(Time.time);
+        yield return new WaitForSeconds(5);
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
+        //MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
+        PlayCorrespondingMusic(0);
+        print(Time.time);
     }
-
-    void LoadLevels(string value)
-    {
-        //Use scence manager
-        SceneManager.LoadScene(value);
-        
-    }
-
 }

@@ -231,7 +231,8 @@ public class Player : MonoBehaviour
         //gameManager.PlayDieMusic();
         // Destroy(gameObject);
         gameManager.died = true;
-        gameManager.EndLevel();
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
+        gameManager.EndLevel();   
     }
   
 }
