@@ -5,11 +5,12 @@ using UnityEngine;
 public class NoteScript : MonoBehaviour
 {
     private GamePlayManager gamePlayManager;
+    private MusicManager musicManager;
 
     private void Awake()
     {
-
         gamePlayManager = FindObjectOfType<GamePlayManager>();
+        musicManager = FindObjectOfType<MusicManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class NoteScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.getAeCollectNote());
             gamePlayManager.IncreaseNotes();
             Destroy(gameObject);
         }

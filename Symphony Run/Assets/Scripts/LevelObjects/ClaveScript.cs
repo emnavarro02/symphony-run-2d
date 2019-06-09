@@ -5,16 +5,13 @@ using UnityEngine;
 public class ClaveScript : MonoBehaviour
 {
     private GamePlayManager gamePlayManager;
-    // Start is called before the first frame update
+    private MusicManager musicManager;
+    
+
     void Awake()
     {
         gamePlayManager = FindObjectOfType<GamePlayManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        musicManager = FindObjectOfType<MusicManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +19,7 @@ public class ClaveScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetAeCollectClef());
             gamePlayManager.IncreaseClaves();
             Destroy(gameObject);
         }

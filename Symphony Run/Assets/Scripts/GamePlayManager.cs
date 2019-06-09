@@ -109,7 +109,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(true);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
 
         }
         if (playerLife == 4)
@@ -123,7 +123,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(false);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
         }
         if (playerLife == 3)
         {
@@ -136,7 +136,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(false);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
         }
         if (playerLife == 2)
         {
@@ -149,7 +149,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(false);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
         }
         if (playerLife == 1)
         {
@@ -162,7 +162,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(false);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
         }
         if (playerLife == 0)
         {
@@ -175,7 +175,7 @@ public class GamePlayManager : MonoBehaviour
             hearts[6].SetActive(false);
             hearts[7].SetActive(false);
             hearts[8].SetActive(true);
-            hearts[9].SetActive(true);
+            // hearts[9].SetActive(true);
         }
     }
 

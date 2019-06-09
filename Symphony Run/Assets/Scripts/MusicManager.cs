@@ -17,6 +17,27 @@ public class MusicManager : MonoBehaviour
     private AudioClip audioLevel4;
     [SerializeField]
     private AudioClip dieMusic;
+    [SerializeField]
+    private AudioClip aeCollectClef;
+    [SerializeField]
+    private AudioClip aeCollectNote;
+    [SerializeField]
+    private AudioClip aeEndLevel;
+
+    public AudioClip GetAeEndLevel()
+    {
+        return aeEndLevel;
+    }
+
+    public AudioClip GetAeCollectClef()
+    {
+        return aeCollectClef;
+    }
+
+    public AudioClip getAeCollectNote()
+    {
+        return aeCollectNote;
+    }
 
     public AudioClip GetAudioLevel1()
     {

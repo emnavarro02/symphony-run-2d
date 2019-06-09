@@ -227,6 +227,8 @@ MonoBehaviour:
   audioLevel3: {fileID: 0}
   audioLevel4: {fileID: 0}
   dieMusic: {fileID: 8300000, guid: 6ca378b631c9047b48b1b03e1c25cd72, type: 3}
+  aeCollectClef: {fileID: 8300000, guid: 4a020507508b67a48b4d7d145699fc0c, type: 3}
+  aeCollectNote: {fileID: 8300000, guid: 59ce8258643f9664ba3130a59fd8d6fe, type: 3}
 --- !u!4 &136379692
 Transform:
   m_ObjectHideFlags: 0

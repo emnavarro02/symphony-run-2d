@@ -5,10 +5,12 @@ using UnityEngine;
 public class EndLevel : MonoBehaviour
 {
     private GameManager gameManager;
+    private MusicManager musicManager;
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        musicManager = FindObjectOfType<MusicManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +19,7 @@ public class EndLevel : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            // Call endlevel
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
             gameManager.died = false;
             gameManager.EndLevel();
         }

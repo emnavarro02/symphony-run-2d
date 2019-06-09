@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 8828763161532296674, guid: fa5427f6eb2c4104e86511997ba36a59,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.66
+      value: 3.66
       objectReference: {fileID: 0}
     - target: {fileID: 8828763161532296674, guid: fa5427f6eb2c4104e86511997ba36a59,
         type: 3}
@@ -6621,6 +6621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b446a0fa40546428ed52a5042cf5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clavcesNumberToBonus: 5
   scoreText: {fileID: 0}
   clefText: {fileID: 0}
   hearts:
