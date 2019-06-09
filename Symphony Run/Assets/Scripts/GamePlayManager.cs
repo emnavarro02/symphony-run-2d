@@ -14,10 +14,10 @@ public class GamePlayManager : MonoBehaviour
     private int clavesNumberToBonus = 5;
     private int playerLife = 6;
 
-    [SerializeField]
+    // [SerializeField]
     private Text scoreText;
 
-    [SerializeField]
+    // [SerializeField]
     private Text clefText;
 
     [SerializeField]
@@ -40,9 +40,9 @@ public class GamePlayManager : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         scoreText = GameObject.Find("Notes").GetComponent<Text>();
-        clefText  = GameObject.Find("Clef").GetComponent<Text>();
+        clefText = GameObject.Find("Clef").GetComponent<Text>();
 
-        print("life:"+playerLife);
+        // print("life:"+playerLife);
     }
 
     public void IncreaseNotes()
@@ -50,8 +50,10 @@ public class GamePlayManager : MonoBehaviour
         notesScore++;
         clavesBonusScore++;
         Debug.Log("Score:" + notesScore);
-        UpdateTextElements();
-        
+        // UpdateTextElements();
+
+        scoreText.text = "Notes: " + notesScore.ToString();
+
         //review
         gameManager.SetOverallNotesScore(notesScore);
         if (clavesBonusScore == clavesNumberToBonus)
@@ -66,20 +68,19 @@ public class GamePlayManager : MonoBehaviour
     {
         claveScore++;
         Debug.Log("score:" + claveScore);
-        UpdateTextElements();
+        // UpdateTextElements();
+        clefText.text = "Clefs: " + claveScore.ToString();
 
         gameManager.SetClafScore(claveScore);
     }
 
     public int UpdatePlayerLife(int damage)
     {
-
-
         playerLife -= damage;
 
         ManageLifes();
 
-        UpdateTextElements();
+        // UpdateTextElements();
 
         gameManager.SetOverallPlayerLife(playerLife);
 
