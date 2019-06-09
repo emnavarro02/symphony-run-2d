@@ -374,7 +374,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Clef:'
+  m_Text: 'Clefs:'
 --- !u!1 &6488278675510789828
 GameObject:
   m_ObjectHideFlags: 0
