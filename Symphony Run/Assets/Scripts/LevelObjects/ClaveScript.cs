@@ -6,9 +6,8 @@ public class ClaveScript : MonoBehaviour
 {
     private GamePlayManager gamePlayManager;
     private MusicManager musicManager;
-    
 
-    void Awake()
+    private void Awake()
     {
         gamePlayManager = FindObjectOfType<GamePlayManager>();
         musicManager = FindObjectOfType<MusicManager>();

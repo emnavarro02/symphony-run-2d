@@ -58,14 +58,11 @@ public class Player : MonoBehaviour
 
     private Collider2D[] results = new Collider2D[1]; // Used by the method OverlapPointNonAlloc to determine if there is a colision between the Overlap point and platform 
 
-    //[SerializeField]
-    //private int life = 6;
-
     private bool isAlive = true;
 
     private Animator myAnimator;
 
-    void Start()
+    private void Start()
     {
         characterController = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
@@ -83,27 +80,25 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        
+    {   
         CheckIfIsOnGround();
         GroundLanding();
-        CheckWallCollisions();
-        
+        CheckWallCollisions();   
     }
 
-    void CheckIfIsOnGround()
+    private void CheckIfIsOnGround()
     {
         //onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
         onGround = Physics2D.OverlapPointNonAlloc(groundCheck.position, results, whatIsGround);
         //print("Is Grounded?: "+ onGround);
     }
 
-    void CheckWallCollisions()
+    private void CheckWallCollisions()
     {
         onWall = Physics2D.OverlapPointNonAlloc(frontCheck.position, results, whatIsGround);
     }
 
-    void CustomGravity()
+    private void CustomGravity()
     {
         ySpeed = characterController.velocity.y;
         ySpeed -= gravityForce * Time.deltaTime;
@@ -149,7 +144,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ForwardMovement()
+    private void ForwardMovement()
     {
         if (onGround > 0)
         {
@@ -164,13 +159,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SpeedApply()
+    private void SpeedApply()
     {
         characterController.velocity = new Vector2(forwardSpeed, characterController.velocity.y); // Controls the speed in the X direction
         characterController.velocity = new Vector2(characterController.velocity.x, ySpeed);       // Controls the speed in the Y direction
     }
 
-    void WallJump()
+    private void WallJump()
     {
         Flip();
         forwardSpeed = forwardSpeed * -1;
@@ -180,7 +175,7 @@ public class Player : MonoBehaviour
         GroundLanding();
     }
 
-    void Flip()
+    private void Flip()
      {
         Vector3 rotation = transform.localEulerAngles;
         rotation.y += 180f;
@@ -188,14 +183,13 @@ public class Player : MonoBehaviour
         facingRight = !facingRight;
     }
 
-    void GroundLanding()
+    private void GroundLanding()
     {
         if (onGround > 0)
         {
             myAnimator.SetBool("onGround", true);
             if (!facingRight)
             {
-               
                 Flip();
             }
         }
@@ -205,8 +199,6 @@ public class Player : MonoBehaviour
     {
         if (isAlive)
         {
-
-
             int life=gamePlayManager.UpdatePlayerLife(damage);
 
             if (life < 0)
@@ -223,22 +215,16 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        //gameManager.PlayDieMusic();
-        // Destroy(gameObject);
         gameManager.died = true;
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
         PersistData();
         gameManager.EndLevel();
-
     }
 
     public void PersistData()
     {
-        //if (!PlayerPrefs.HasKey("notes")) {
         PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
         PlayerPrefs.SetInt("life", gamePlayManager.GetPLayerLife());
-
-        //}
 
         print("life valueeeee: " + PlayerPrefs.GetInt("life"));
     }

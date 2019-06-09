@@ -9,7 +9,7 @@ public class DeadZone : MonoBehaviour
     // private bool dead = false;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // gameManager = FindObjectOfType<GameManager>(); ;
     }

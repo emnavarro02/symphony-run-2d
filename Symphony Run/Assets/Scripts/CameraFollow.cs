@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
     private float deltaY; //buffer area where user can move and camera no changes.
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // Define the position of the camera programatically
         deltaX = Mathf.Abs(player.transform.position.x - transform.position.x);
@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if(player != null)
         {
@@ -40,12 +40,12 @@ public class CameraFollow : MonoBehaviour
 
     }
 
-    void SetCameraXPosition()
+    private void SetCameraXPosition()
     {
         transform.position = new Vector3(player.transform.position.x + deltaX, cameraPostionY, cameraPositionZ);
     }
 
-    void SetCameraYPosition()
+    private void SetCameraYPosition()
     {
         if(player.transform.position.y <transform.position.y - deltaY)
         {

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,12 +11,9 @@ public class GameManager : MonoBehaviour
     private int playerLife;
 
     public bool died = false;
-
-
-
-
+    public int currentLevel; //used by GameOver to load the current level  => Retry? = Yes
+    
     private static GameManager instance = null;
-
 
     public static GameManager Instance
     {
@@ -41,25 +34,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         print("LOAD");
-
     }
 
     // Keep the overal notes collected on the game
-    public void setOverallNotesScore(int notes)
+    public void SetOverallNotesScore(int notes)
     {
         overallNotesScore += notes;
     }
 
     // the clafs on the last level
-    public void setClafScore(int clave)
+    public void SetClafScore(int clave)
     {
         claveScore = clave;
     }
 
-    public void setOverallPlayerLife(int life)
+    public void SetOverallPlayerLife(int life)
     {
         playerLife = life;
     }
@@ -86,8 +78,12 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("Level1_score", claveScore);
             }
 
+            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
         }
-
-        SceneManager.LoadScene(0);
+        else
+        {
+            // Loads the GameOver Scene: 
+            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5); // Load the GameOver Scene with Fade.
+        }
     }
 }

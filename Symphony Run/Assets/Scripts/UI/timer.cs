@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    readonly int score = 3;
+    private readonly int score = 3;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //unlock next levels
         PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
@@ -17,7 +18,7 @@ public class Timer : MonoBehaviour
         StartCoroutine(Time());
     }
 
-    IEnumerator Time()
+    private IEnumerator Time()
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);

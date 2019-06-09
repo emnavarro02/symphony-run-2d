@@ -24,6 +24,27 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     private AudioClip aeEndLevel;
 
+    public AudioClip GetAudioClip(int levelIndex)
+    {
+        switch (levelIndex)
+        {
+            case 0:
+                return audioLevelManager;
+            case 1:
+                return audioLevel1;
+            case 2:
+                return audioLevel2;
+            case 3:
+                return audioLevel3;
+            case 4:
+                return audioLevel4;
+            case 5:
+                return dieMusic;
+            default: throw new System.ArgumentOutOfRangeException();
+        }
+    }
+
+
     public AudioClip GetAeEndLevel()
     {
         return aeEndLevel;

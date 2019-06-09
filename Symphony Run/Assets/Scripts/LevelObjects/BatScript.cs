@@ -29,7 +29,7 @@ public class BatScript : MonoBehaviour
     private bool facingRight = true;
     private GamePlayManager gamePlayManager;
 
-    void Start()
+    private void Start()
     {
         gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
@@ -40,7 +40,7 @@ public class BatScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         moveToThePlayer();

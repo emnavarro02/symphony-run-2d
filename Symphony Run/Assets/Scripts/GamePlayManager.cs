@@ -6,13 +6,12 @@ using UnityEngine.UI;
 
 public class GamePlayManager : MonoBehaviour
 {
-
-    //[SerializeField]
     private int notesScore = 0;
     private int claveScore = 0;
     private int clavesBonusScore = 0;
+
     [SerializeField]
-    private int clavcesNumberToBonus = 5;
+    private int clavesNumberToBonus = 5;
     private int playerLife = 6;
 
     [SerializeField]
@@ -27,18 +26,21 @@ public class GamePlayManager : MonoBehaviour
     private GameManager gameManager;
     private Player player;
 
+
+    private void Awake()
+    {
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetAudioClip(SceneManager.GetActiveScene().buildIndex);
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
+    }
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         player = FindObjectOfType<Player>();
 
         scoreText = GameObject.Find("Notes").GetComponent<Text>();
         clefText  = GameObject.Find("Clef").GetComponent<Text>();
-        //if (playerLife<6)
-        //{
-            //playerLife = PlayerPrefs.GetInt("life");
-        //}
 
         print("life:"+playerLife);
     }
@@ -47,12 +49,12 @@ public class GamePlayManager : MonoBehaviour
     {
         notesScore++;
         clavesBonusScore++;
-        Debug.Log("score:" + notesScore);
+        Debug.Log("Score:" + notesScore);
         UpdateTextElements();
         
         //review
-        gameManager.setOverallNotesScore(notesScore);
-        if (clavesBonusScore == clavcesNumberToBonus)
+        gameManager.SetOverallNotesScore(notesScore);
+        if (clavesBonusScore == clavesNumberToBonus)
         {
             playerLife = playerLife + 1;
             ManageLifes();
@@ -66,7 +68,7 @@ public class GamePlayManager : MonoBehaviour
         Debug.Log("score:" + claveScore);
         UpdateTextElements();
 
-        gameManager.setClafScore(claveScore);
+        gameManager.SetClafScore(claveScore);
     }
 
     public int UpdatePlayerLife(int damage)
@@ -79,7 +81,7 @@ public class GamePlayManager : MonoBehaviour
 
         UpdateTextElements();
 
-        gameManager.setOverallPlayerLife(playerLife);
+        gameManager.SetOverallPlayerLife(playerLife);
 
         return playerLife;
     }
