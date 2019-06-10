@@ -226,7 +226,7 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
         PlayerPrefs.SetInt("life", gamePlayManager.GetPLayerLife());
 
-        print("life valueeeee: " + PlayerPrefs.GetInt("life"));
+        print("notes score: " + PlayerPrefs.GetInt("notes"));
     }
   
 }
