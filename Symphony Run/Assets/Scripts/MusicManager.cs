@@ -40,6 +40,8 @@ public class MusicManager : MonoBehaviour
                 return audioLevel4;
             case 5:
                 return dieMusic;
+            case 99:
+                return aeEndLevel;
             default: throw new System.ArgumentOutOfRangeException();
         }
     }

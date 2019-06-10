@@ -229,7 +229,7 @@ MonoBehaviour:
   dieMusic: {fileID: 8300000, guid: 6ca378b631c9047b48b1b03e1c25cd72, type: 3}
   aeCollectClef: {fileID: 8300000, guid: 4a020507508b67a48b4d7d145699fc0c, type: 3}
   aeCollectNote: {fileID: 8300000, guid: 59ce8258643f9664ba3130a59fd8d6fe, type: 3}
-  aeEndLevel: {fileID: 0}
+  aeEndLevel: {fileID: 8300000, guid: ac2c8b00d57ba894bab847ee2962f76d, type: 3}
 --- !u!4 &136379692
 Transform:
   m_ObjectHideFlags: 0

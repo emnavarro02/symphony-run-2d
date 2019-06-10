@@ -14,10 +14,8 @@ public class GamePlayManager : MonoBehaviour
     private int clavesNumberToBonus = 5;
     private int playerLife = 6;
 
-    // [SerializeField]
     private Text scoreText;
 
-    // [SerializeField]
     private Text clefText;
 
     [SerializeField]
@@ -26,9 +24,12 @@ public class GamePlayManager : MonoBehaviour
     private GameManager gameManager;
     private Player player;
 
+    [SerializeField]
+    private GameObject completeLevelUI;
 
     private void Awake()
     {
+        
         MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetAudioClip(SceneManager.GetActiveScene().buildIndex);
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
     }
@@ -41,8 +42,20 @@ public class GamePlayManager : MonoBehaviour
 
         scoreText = GameObject.Find("Notes").GetComponent<Text>();
         clefText = GameObject.Find("Clef").GetComponent<Text>();
+    }
 
-        // print("life:"+playerLife);
+    public void LevelComplete()
+    {
+        print("Level Complete");
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetAudioClip(99);
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
+        completeLevelUI.SetActive(true);
+        Invoke("CallEndLevel", 4);
+    }
+
+    private void CallEndLevel()
+    {
+        gameManager.EndLevel();
     }
 
     public void IncreaseNotes()
@@ -50,7 +63,6 @@ public class GamePlayManager : MonoBehaviour
         notesScore++;
         clavesBonusScore++;
         Debug.Log("Score:" + notesScore);
-        // UpdateTextElements();
 
         scoreText.text = "Notes: " + notesScore.ToString();
 
@@ -68,7 +80,6 @@ public class GamePlayManager : MonoBehaviour
     {
         claveScore++;
         Debug.Log("score:" + claveScore);
-        // UpdateTextElements();
         clefText.text = "Clefs: " + claveScore.ToString();
 
         gameManager.SetClafScore(claveScore);
@@ -80,8 +91,6 @@ public class GamePlayManager : MonoBehaviour
 
         ManageLifes();
 
-        // UpdateTextElements();
-
         gameManager.SetOverallPlayerLife(playerLife);
 
         return playerLife;
@@ -90,12 +99,6 @@ public class GamePlayManager : MonoBehaviour
     public int GetPLayerLife()
     {
         return playerLife;
-    }
-
-    private void UpdateTextElements()
-    {
-        scoreText.text = "Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + playerLife.ToString();
-        Debug.Log("Notes: " + notesScore.ToString() + " Claves: " + claveScore.ToString() + "Life: " + playerLife);
     }
 
     public void ManageLifes()

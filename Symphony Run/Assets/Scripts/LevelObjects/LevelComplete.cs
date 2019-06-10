@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndLevel : MonoBehaviour
+public class LevelComplete : MonoBehaviour
 {
     private GameManager gameManager;
     private MusicManager musicManager;
+
+    private bool levelComplete = false;
 
     private void Awake()
     {
@@ -15,13 +17,16 @@ public class EndLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
-
         if (collision.CompareTag("Player"))
         {
-            MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-            gameManager.died = false;
-            gameManager.EndLevel();
+            if (!levelComplete)
+            {
+                levelComplete = true;
+                gameManager.died = false;
+                //gameManager.EndLevel();
+                FindObjectOfType<GamePlayManager>().LevelComplete();
+            }
+
         }
     }
 }
