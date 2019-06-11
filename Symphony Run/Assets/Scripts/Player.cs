@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            myAnimator.SetBool("onGround", false);
+           
             //Debug.Log("isJumping");
             if (onGround > 0)
             {
@@ -129,6 +129,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        myAnimator.SetBool("onGround", false);
         if (onGround > 0)
         {
             hangTimer = hangTime;
