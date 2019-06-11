@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BatScript : MonoBehaviour
 {
@@ -11,21 +12,13 @@ public class BatScript : MonoBehaviour
     [SerializeField]
     private float life = 50f;
     // Start is called before the first frame update
-    [SerializeField]
-    private Transform player;
-    [SerializeField]
-    private Transform bat;
+   
 
     private Rigidbody2D myRigidbody2D;
 
     [SerializeField]
     private float xPosition = 0;
     private int yPosition = 0;
-
-    private float x=0;
-    private float y=0;
-    private float z=0;
-    private bool move = false;
     private bool facingRight = true;
     private GamePlayManager gamePlayManager;
 
@@ -70,20 +63,30 @@ public class BatScript : MonoBehaviour
             xPosition = transform.position.x;
         }
         float difference = xPosition - transform.position.x;
-        // Debug.Log("dif: "+difference);
+
+        if (difference<0)
+        {
+            difference = Math.Abs(difference);
+        }
+
         if (difference<3)
         {
-            transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime), transform.position.y);
+            if (facingRight)
+            {
+                transform.position = new Vector2(transform.position.x + (-1f * Time.deltaTime), transform.position.y);
+            }
+            else
+            {
+                transform.position = new Vector2(transform.position.x + (1f * Time.deltaTime), transform.position.y);
+            }
 
-            //xPosition = 0;
         }
         if (difference>3)
         {
-            if (facingRight) {
+            //if (facingRight) {
                 Flip();
-            }
+            //}
+            xPosition = 0;
         }
-        
-        // Debug.Log(xPosition+ "-----"+ transform.position.x);
     }
 }

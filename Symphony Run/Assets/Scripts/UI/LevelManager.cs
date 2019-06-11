@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour
     private MusicManager musicManager; // Singleton which contains all audio clips to be played.
     private LevelChanger levelChanger; // Object that control the Fade Animation.
 
+    private Text generalScore;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -33,6 +35,15 @@ public class LevelManager : MonoBehaviour
         musicManager = FindObjectOfType<MusicManager>();
         levelChanger = FindObjectOfType<LevelChanger>();
 
+
+        //if (!PlayerPrefs.HasKey("notes"))
+        //{
+            int score = PlayerPrefs.GetInt("notes");
+        Debug.Log("score desde level manager"+score);
+            //generalScore.text = score.ToString();
+        //}
+        generalScore = GameObject.Find("Score").GetComponent<Text>();
+        generalScore.text = "Score: "+score.ToString();
         MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioClip(SceneManager.GetActiveScene().buildIndex);
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
 
     public bool died = false;
     public int currentLevel; //used by GameOver to load the current level  => Retry? = Yes
-    
+
+    private Text generalScore;
+
     private static GameManager instance = null;
 
     public static GameManager Instance
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         print("LOAD");
+
     }
 
     // Keep the overal notes collected on the game
@@ -77,7 +81,7 @@ public class GameManager : MonoBehaviour
                 // Get score to show stars.
                 PlayerPrefs.SetInt("Level1_score", claveScore);
             }
-
+            PersistData();
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
         }
         else
@@ -85,5 +89,13 @@ public class GameManager : MonoBehaviour
             // Loads the GameOver Scene: 
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5); // Load the GameOver Scene with Fade.
         }
+    }
+
+    public void PersistData()
+    {
+        PlayerPrefs.SetInt("notes", GetNotesScore());
+        //PlayerPrefs.SetInt("life", GetPLayerLife());
+
+        print("notes score: " + PlayerPrefs.GetInt("notes"));
     }
 }
