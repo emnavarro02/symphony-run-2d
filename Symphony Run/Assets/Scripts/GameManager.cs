@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Keep the overal notes collected on the game
     public void SetOverallNotesScore(int notes)
     {
-        overallNotesScore += notes;
+        overallNotesScore = notes;
     }
 
     // the clafs on the last level
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel()
     {
+        PersistData();
         if (!died)
         {
             print("NOT DIED: " + claveScore); 
@@ -81,11 +82,12 @@ public class GameManager : MonoBehaviour
                 // Get score to show stars.
                 PlayerPrefs.SetInt("Level1_score", claveScore);
             }
-            PersistData();
+            //PersistData();
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
         }
         else
         {
+            //PersistData();
             // Loads the GameOver Scene: 
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5); // Load the GameOver Scene with Fade.
         }
@@ -93,9 +95,16 @@ public class GameManager : MonoBehaviour
 
     public void PersistData()
     {
-        PlayerPrefs.SetInt("notes", GetNotesScore());
-        //PlayerPrefs.SetInt("life", GetPLayerLife());
+        if (PlayerPrefs.HasKey("notes"))
+        {
+            int notes = PlayerPrefs.GetInt("notes");
+            PlayerPrefs.SetInt("notes", GetNotesScore()+notes);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("notes", GetNotesScore());
+        }
 
-        print("notes score: " + PlayerPrefs.GetInt("notes"));
+        print("notes scoreee: " + PlayerPrefs.GetInt("notes"));
     }
 }

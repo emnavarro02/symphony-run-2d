@@ -18,7 +18,7 @@ public class SkeletonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        moveToThePlayer();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

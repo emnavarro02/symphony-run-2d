@@ -9,6 +9,7 @@ public class DeadZone : MonoBehaviour
     // private bool dead = false;
 
     // Start is called before the first frame update
+    private bool died = false;
     private void Start()
     {
         // gameManager = FindObjectOfType<GameManager>(); ;
@@ -16,17 +17,21 @@ public class DeadZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        
         if (collision.CompareTag("Player"))
         {
+            if (!died)
+            {
+                print("Fell in a hole");
+                collision.GetComponent<Player>().Die();
+                died = true;
+                //gameManager.died = false;
+            }
 
-            print("Fell in a hole");
-            collision.GetComponent<Player>().Die();
-
-            // dead = true;
+             
 
             // Debug.Log(" luego del delay");
-            // gameManager.died = false;
+            // 
             // gameManager.EndLevel();
             // GetComponent<Player>().D;
             // Destroy(gameObject);

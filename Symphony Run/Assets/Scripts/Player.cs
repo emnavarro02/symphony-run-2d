@@ -218,16 +218,25 @@ public class Player : MonoBehaviour
     {
         gameManager.died = true;
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-        PersistData();
+        //PersistData();
         gameManager.EndLevel();
     }
 
-    public void PersistData()
-    {
-        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
-        PlayerPrefs.SetInt("life", gamePlayManager.GetPLayerLife());
+    //public void PersistData()
+    //{
 
-        print("notes score: " + PlayerPrefs.GetInt("notes"));
-    }
+    //    if (PlayerPrefs.HasKey("notes"))
+    //    {
+    //        int notes = PlayerPrefs.GetInt("notes");
+    //        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore() + notes);
+    //    }
+    //    else
+    //    {
+    //        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
+    //    }
+    //    //PlayerPrefs.SetInt("life", GetPLayerLife());
+
+    //    print("notes score: " + PlayerPrefs.GetInt("notes"));
+    //}
   
 }
