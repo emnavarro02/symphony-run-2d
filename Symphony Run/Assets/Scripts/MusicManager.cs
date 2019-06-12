@@ -73,7 +73,7 @@ public class MusicManager : MonoBehaviour
             case SFX_REGULAR_NOTES:
                 return sfxRegularNotes;
             case SFX_LEVEL_COMPLETE:
-                return sfxCollectedClefs;
+                return sfxLevelComplete;
             default: throw new System.ArgumentOutOfRangeException();
         }
     }

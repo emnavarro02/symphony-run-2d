@@ -47,7 +47,7 @@ public class GamePlayManager : MonoBehaviour
     public void LevelComplete()
     {
         print("Level Complete");
-        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetAudioClip(99);
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetSFXEffect(MusicManager.SFX_LEVEL_COMPLETE);
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
         completeLevelUI.SetActive(true);
         Invoke("CallEndLevel", 4);
