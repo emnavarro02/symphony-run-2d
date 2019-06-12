@@ -224,8 +224,8 @@ MonoBehaviour:
   audioLevelManager: {fileID: 8300000, guid: d9d4561be268a4c51bc0299c3b260862, type: 3}
   audioLevel1: {fileID: 8300000, guid: 60f0621947e1e48a4a7a7df5fdf6efe8, type: 3}
   audioLevel2: {fileID: 8300000, guid: 54fc19e3be495431f8d8ed7eb6073aed, type: 3}
-  audioLevel3: {fileID: 0}
-  audioLevel4: {fileID: 0}
+  audioLevel3: {fileID: 8300000, guid: e3fca5626f53447caab2236bcecf6656, type: 3}
+  audioLevel4: {fileID: 8300000, guid: ce15bd663621d4697a8d75af4c4878e6, type: 3}
   dieMusic: {fileID: 8300000, guid: 6ca378b631c9047b48b1b03e1c25cd72, type: 3}
   sfxCollectedClefs: {fileID: 8300000, guid: 4a020507508b67a48b4d7d145699fc0c, type: 3}
   sfxRegularNotes: {fileID: 8300000, guid: 9201d5bcf7dbe4a458f6143d2748cc05, type: 3}
