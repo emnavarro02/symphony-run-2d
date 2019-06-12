@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
 
     private void IsJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             //Debug.Log("isJumping");
             if (onGround > 0)
