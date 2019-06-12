@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
     {
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-           
             //Debug.Log("isJumping");
             if (onGround > 0)
             {
@@ -132,6 +131,7 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         myAnimator.SetBool("onGround", false);
+        MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<MusicManager>().GetSFXEffect(MusicManager.SFX_JUMP));
         if (onGround > 0)
         {
             hangTimer = hangTime;
@@ -202,6 +202,7 @@ public class Player : MonoBehaviour
     {
         if (isAlive)
         {
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<MusicManager>().GetSFXEffect(MusicManager.SFX_DAMAGED));
             int life=gamePlayManager.UpdatePlayerLife(damage);
 
             if (life < 0)
