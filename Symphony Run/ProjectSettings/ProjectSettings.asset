@@ -597,6 +597,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
