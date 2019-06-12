@@ -18,7 +18,8 @@ public class ClaveScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetAeCollectClef());
+            //MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetAeCollectClef());
+            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetSFXEffect(MusicManager.SFX_SPECIAL_NOTES));
             gamePlayManager.IncreaseClaves();
             Destroy(gameObject);
         }

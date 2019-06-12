@@ -227,9 +227,11 @@ MonoBehaviour:
   audioLevel3: {fileID: 0}
   audioLevel4: {fileID: 0}
   dieMusic: {fileID: 8300000, guid: 6ca378b631c9047b48b1b03e1c25cd72, type: 3}
-  aeCollectClef: {fileID: 8300000, guid: 4a020507508b67a48b4d7d145699fc0c, type: 3}
-  aeCollectNote: {fileID: 8300000, guid: 59ce8258643f9664ba3130a59fd8d6fe, type: 3}
-  aeEndLevel: {fileID: 8300000, guid: ac2c8b00d57ba894bab847ee2962f76d, type: 3}
+  sfxCollectedClefs: {fileID: 8300000, guid: 4a020507508b67a48b4d7d145699fc0c, type: 3}
+  sfxRegularNotes: {fileID: 8300000, guid: 9201d5bcf7dbe4a458f6143d2748cc05, type: 3}
+  sfxLevelComplete: {fileID: 8300000, guid: ac2c8b00d57ba894bab847ee2962f76d, type: 3}
+  sfxJump: {fileID: 8300000, guid: d4181c4278432274092bc1ece3c929d6, type: 3}
+  sfxDamaged: {fileID: 8300000, guid: 36a1372cf45e6434ea71938c0ae7e906, type: 3}
 --- !u!4 &136379692
 Transform:
   m_ObjectHideFlags: 0
@@ -466,15 +468,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.32941177, g: 0.5568628, b: 0.7019608, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d98d33059868b574fb83710184d9cee9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -707,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
