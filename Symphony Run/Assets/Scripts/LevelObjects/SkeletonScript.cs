@@ -9,8 +9,10 @@ public class SkeletonScript : MonoBehaviour
     private int damage = 2;
     private float xPosition = 0;
     private bool facingRight = true;
+    private bool detectedBefore = false;
     // Start is called before the first frame update
     void Start()
+
     {
         
     }
@@ -21,14 +23,49 @@ public class SkeletonScript : MonoBehaviour
         moveToThePlayer();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        other.GetComponent<Player>().TakeDamage(damage);
+    //        // gamePlayManager.UpdatePlayerLife();
+    //    }
+    //}
+
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().TakeDamage(damage);
-            // gamePlayManager.UpdatePlayerLife();
+            //Exit if we have already done some damage
+            if (detectedBefore)
+            {
+                return;
+            }
+
+            //Set the other detectedBefore variable to true
+            //DamageStatus dmStat = other.gameObject.GetComponent<DamageStatus>();
+            //if (dmStat)
+            //{
+            //    dmStat.detectedBefore = true;
+            //}
+            other.gameObject.GetComponent<Player>().TakeDamage(damage);
+            //detectedBefore =truee
+            // Put damage/or code to run once below
+
         }
     }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //Reset on exit?
+            detectedBefore = true;
+        }
+    }
+
+
 
     private void Flip()
     {

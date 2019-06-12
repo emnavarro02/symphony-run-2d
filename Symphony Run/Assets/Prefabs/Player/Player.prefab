@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6901423444997547476
 Transform:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityForce: 9.8
   gravityModifier: 30
-  hangTime: 0.5
+  hangTime: 0.86
   groundCheck: {fileID: 6901423444997547476}
   frontCheck: {fileID: 4559317303756209132}
   groundCheckRadius: 0.3
@@ -159,7 +159,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   runSpeed: 3
-  lerpTime: 1
+  lerpTime: 1.78
   jumpForce: 9
   onWall: 0
   onGround: 0
@@ -172,7 +172,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 5385806718083546674}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2d052ddf8eed4134e9c5662990a389c9, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -186,7 +186,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5385806718083546674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 2d052ddf8eed4134e9c5662990a389c9, type: 2}
   m_IsTrigger: 1

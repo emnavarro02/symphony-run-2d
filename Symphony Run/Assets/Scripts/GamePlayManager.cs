@@ -63,10 +63,7 @@ public class GamePlayManager : MonoBehaviour
         notesScore++;
         clavesBonusScore++;
         Debug.Log("Scoreeee:" + notesScore);
-
-
         scoreText.text = "Notes: " + notesScore.ToString();
-
         //review
         gameManager.SetOverallNotesScore(notesScore);
         Debug.Log("Score overal:" + gameManager.GetNotesScore().ToString());
