@@ -124,51 +124,7 @@ public class LevelManager : MonoBehaviour
     private void LoadLevel(string value, int levelNumber)
     {
         gameManager.currentLevel = levelNumber;
-        GetPersistedData();
-
         // Calling the FadeOut script. The SceneManager.LoadScene is called there.
         levelChanger.FadeToLevel(levelNumber);
-    }
-
-    //private void PlayCorrespondingMusic(int level)
-    //{
-    //    switch (level)
-    //    {
-    //        case 0:
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetAudioLevelManager());
-    //            break;
-    //        case 1:
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel1();
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
-    //            break;
-    //        case 2:
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel2();
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
-    //            break;
-    //        case 3:
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.GetAudioLevel3();
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
-    //            break;
-    //        case 5:
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = musicManager.DieMusicAudio();
-    //            MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
-    //            break;
-    //    }
-    //}
-
-    ///**
-    // * Play the Died Music for some seconds and then change it to the music of the Level Selection Screen
-    // */
-    //private IEnumerator Timer()
-    //{
-    //    print(Time.time);
-    //    yield return new WaitForSeconds(5); // wait for 5 seconds
-    //    MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-    //    PlayCorrespondingMusic(0); // 0 = Level Selection Screen
-    //}
-
-    public void GetPersistedData()
-    {
-        //player.SetPlayerLife(PlayerPrefs.GetInt("life"));
     }
 }

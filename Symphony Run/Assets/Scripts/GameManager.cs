@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,33 +65,22 @@ public class GameManager : MonoBehaviour
         return overallNotesScore;
     }
 
-    public void EndLevel()
+    public void EndLevel(int levelIndex)
     {
         PersistData();
         if (!died)
         {
-            print("NOT DIED: " + claveScore); 
-            //if collected all the claves, unlock next level
-            if (claveScore >= 3)
-            {
-                //unlock next levels
-                PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
-            }
-
-            if (PlayerPrefs.GetInt("Level1_score") < claveScore)
-            {
-                // Get score to show stars.
-                PlayerPrefs.SetInt("Level1_score", claveScore);
-            }
-            //PersistData();
+            print(SceneManager.GetActiveScene().name);
+            print("NOT DIED: " + claveScore);
+            UnlockNextLevel(levelIndex);
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
         }
         else
         {
-            //PersistData();
             // Loads the GameOver Scene: 
             LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5); // Load the GameOver Scene with Fade.
         }
+
     }
 
     public void PersistData()
@@ -106,5 +96,23 @@ public class GameManager : MonoBehaviour
         }
 
         print("notes scoreee: " + PlayerPrefs.GetInt("notes"));
+    }
+
+    private void UnlockNextLevel(int currentLevel)
+    {
+        //if collected all the claves, unlock next level
+        if (claveScore >= 3)
+        {
+            int nextLevel = currentLevel + 1;
+            //unlock next levels
+            PlayerPrefs.SetInt("Level"+ nextLevel, 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+            // PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+        }
+
+        if (PlayerPrefs.GetInt("Level"+ currentLevel +"_score") < claveScore)
+        {
+            // Get score to show stars.
+            PlayerPrefs.SetInt("Level" + currentLevel + "_score", claveScore);
+        }
     }
 }

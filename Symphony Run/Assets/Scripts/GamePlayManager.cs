@@ -53,9 +53,9 @@ public class GamePlayManager : MonoBehaviour
         Invoke("CallEndLevel", 4);
     }
 
-    private void CallEndLevel()
+    public void CallEndLevel()
     {
-        gameManager.EndLevel();
+        gameManager.EndLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void IncreaseNotes()

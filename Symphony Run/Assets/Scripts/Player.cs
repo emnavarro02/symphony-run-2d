@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -219,24 +220,6 @@ public class Player : MonoBehaviour
         gameManager.died = true;
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
         //PersistData();
-        gameManager.EndLevel();
-    }
-
-    //public void PersistData()
-    //{
-
-    //    if (PlayerPrefs.HasKey("notes"))
-    //    {
-    //        int notes = PlayerPrefs.GetInt("notes");
-    //        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore() + notes);
-    //    }
-    //    else
-    //    {
-    //        PlayerPrefs.SetInt("notes", gameManager.GetNotesScore());
-    //    }
-    //    //PlayerPrefs.SetInt("life", GetPLayerLife());
-
-    //    print("notes score: " + PlayerPrefs.GetInt("notes"));
-    //}
-  
+        gameManager.EndLevel(SceneManager.GetActiveScene().buildIndex);
+    } 
 }
