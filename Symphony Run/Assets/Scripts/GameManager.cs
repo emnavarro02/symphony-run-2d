@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Loads the GameOver Scene: 
-            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5); // Load the GameOver Scene with Fade.
+            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(6); // Load the GameOver Scene with Fade.
         }
 
     }
@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
 
     private void UnlockNextLevel(int currentLevel)
     {
+       
         //if collected all the claves, unlock next level
         if (claveScore >= 3)
         {
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Level"+ nextLevel, 1); // Key: LevelName, Value: 1=unlocked / 0=locked
             // PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
         }
-
+        //Saving the notes score for the current level
         if (PlayerPrefs.GetInt("Level"+ currentLevel +"_score") < claveScore)
         {
             // Get score to show stars.

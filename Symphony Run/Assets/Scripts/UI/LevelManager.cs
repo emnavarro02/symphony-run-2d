@@ -123,8 +123,17 @@ public class LevelManager : MonoBehaviour
      */
     private void LoadLevel(string value, int levelNumber)
     {
+        if (levelNumber == 4)
+        {
+            print("Level Number is: " + levelNumber);
+            print("Attempting to load: " + SceneManager.GetSceneByName("GameComplete").buildIndex);
+            levelChanger.FadeToLevel(5);
+        }
+        
+
         gameManager.currentLevel = levelNumber;
         // Calling the FadeOut script. The SceneManager.LoadScene is called there.
         levelChanger.FadeToLevel(levelNumber);
+
     }
 }

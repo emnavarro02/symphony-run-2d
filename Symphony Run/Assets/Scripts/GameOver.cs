@@ -32,6 +32,4 @@ public class GameOver : MonoBehaviour
     {
         LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0);
     }
-
-
 }
