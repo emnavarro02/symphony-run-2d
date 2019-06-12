@@ -912,9 +912,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 57b4173c9c784414d8f7db93474edcc7,
+        type: 3}
+    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 49964505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559827143, guid: fa5427f6eb2c4104e86511997ba36a59, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2d052ddf8eed4134e9c5662990a389c9, type: 2}
     - target: {fileID: 1559827147, guid: fa5427f6eb2c4104e86511997ba36a59, type: 3}
       propertyPath: runSpeed
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1559827147, guid: fa5427f6eb2c4104e86511997ba36a59, type: 3}
       propertyPath: hangTime
@@ -949,52 +969,6 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.47779584
       objectReference: {fileID: 0}
-    - target: {fileID: 1050434262535054305, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 1.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 1050434262535054305, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 5.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901423444997547476, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.048
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901423444997547476, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.223
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559317303756209132, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.127
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559317303756209132, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.721
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 57b4173c9c784414d8f7db93474edcc7,
-        type: 3}
-    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 49964505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098421781451758834, guid: fa5427f6eb2c4104e86511997ba36a59,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2665773113812297732, guid: fa5427f6eb2c4104e86511997ba36a59,
         type: 3}
       propertyPath: m_Offset.y
@@ -1025,10 +999,36 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1559827143, guid: fa5427f6eb2c4104e86511997ba36a59, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 2d052ddf8eed4134e9c5662990a389c9, type: 2}
+    - target: {fileID: 6901423444997547476, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901423444997547476, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.223
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559317303756209132, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559317303756209132, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.721
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050434262535054305, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050434262535054305, guid: fa5427f6eb2c4104e86511997ba36a59,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 5.76
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa5427f6eb2c4104e86511997ba36a59, type: 3}
 --- !u!4 &402511984 stripped
@@ -2471,7 +2471,7 @@ SpriteRenderer:
   m_Size: {x: 4.71, y: 14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1313663798
@@ -4323,6 +4323,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885547450, guid: 833e4c2ee6a85704786b396a445bab56, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6488278676445513161, guid: 833e4c2ee6a85704786b396a445bab56,
         type: 3}
