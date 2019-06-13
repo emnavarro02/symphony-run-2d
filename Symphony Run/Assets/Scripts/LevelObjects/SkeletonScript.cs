@@ -10,6 +10,7 @@ public class SkeletonScript : MonoBehaviour
     private float xPosition = 0;
     private bool facingRight = true;
     private bool detectedBefore = false;
+    Vector3 stageDimensions;
     // Start is called before the first frame update
     void Start()
 
@@ -21,6 +22,15 @@ public class SkeletonScript : MonoBehaviour
     void Update()
     {
         moveToThePlayer();
+        float vertExtent = Camera.main.orthographicSize;
+        float horzExtent = vertExtent * Screen.width / Screen.height;
+        stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(horzExtent, Screen.height, 0));
+
+        if (stageDimensions.x > transform.position.x +2)
+        {
+            Debug.Log("destroy");
+            Destroy(gameObject);
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D other)
@@ -42,25 +52,14 @@ public class SkeletonScript : MonoBehaviour
             {
                 return;
             }
-
-            //Set the other detectedBefore variable to true
-            //DamageStatus dmStat = other.gameObject.GetComponent<DamageStatus>();
-            //if (dmStat)
-            //{
-            //    dmStat.detectedBefore = true;
-            //}
             other.gameObject.GetComponent<Player>().TakeDamage(damage);
-            //detectedBefore =truee
-            // Put damage/or code to run once below
-
         }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
-        {
-            //Reset on exit?
+        { 
             detectedBefore = true;
         }
     }
@@ -102,9 +101,7 @@ public class SkeletonScript : MonoBehaviour
         }
         if (difference > 3)
         {
-            //if (facingRight) {
             Flip();
-            //}
             xPosition = 0;
         }
     }

@@ -3930,12 +3930,12 @@ PrefabInstance:
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.086372
+      value: -56.31
       objectReference: {fileID: 0}
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.153301
+      value: 10.12
       objectReference: {fileID: 0}
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}
@@ -3982,6 +3982,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 830358940541758141, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 893629473}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b, type: 3}
 --- !u!4 &506703385 stripped
@@ -9390,6 +9395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 830358940541758143, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10134,6 +10144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 830358940541758143, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10866,6 +10881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bat
+      objectReference: {fileID: 0}
+    - target: {fileID: 830358940541758143, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 830358940541758139, guid: 8ab47ea6ac2be47d7b6e293f73f4d82b,
         type: 3}

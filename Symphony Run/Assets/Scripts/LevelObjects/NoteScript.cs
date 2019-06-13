@@ -18,7 +18,6 @@ public class NoteScript : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            // MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.getAeCollectNote());
             MusicController.Instance.gameObject.GetComponent<AudioSource>().PlayOneShot(musicManager.GetSFXEffect(MusicManager.SFX_REGULAR_NOTES));
             gamePlayManager.IncreaseNotes();
             Destroy(gameObject);

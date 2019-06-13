@@ -8,10 +8,10 @@ public class GamePlayManager : MonoBehaviour
 {
     private int notesScore = 0;
     private int claveScore = 0;
-    private int clavesBonusScore = 0;
+    private int notesNumberBonus = 0;
 
     [SerializeField]
-    private int clavesNumberToBonus = 5;
+    private int notesNumberToBonus = 5;
     private int playerLife = 6;
 
     private Text scoreText;
@@ -60,17 +60,28 @@ public class GamePlayManager : MonoBehaviour
     public void IncreaseNotes()
     {
         notesScore++;
-        clavesBonusScore++;
-       // Debug.Log("Scoreeee:" + notesScore);
+        notesNumberBonus++;
+       
         scoreText.text = "Notes: " + notesScore.ToString();
         //review
         gameManager.SetOverallNotesScore(notesScore);
         //Debug.Log("Score overal:" + gameManager.GetNotesScore().ToString());
-        if (clavesBonusScore == clavesNumberToBonus)
+        Debug.Log("notes to bonus:"+ notesNumberBonus);
+
+        if (notesNumberBonus == notesNumberToBonus)
         {
-            playerLife = playerLife + 1;
+            Debug.Log("Bonus");
+            if ((playerLife+2)>6)
+            {
+                playerLife = 6;
+            }
+            else
+            {
+                playerLife = playerLife + 2;
+            }
+            Debug.Log("lifeeeeeeeeeeee:"+playerLife);
             ManageLifes();
-            clavesBonusScore = 0;
+            notesNumberBonus = 0;
         }
     }
 
@@ -102,6 +113,20 @@ public class GamePlayManager : MonoBehaviour
     public void ManageLifes()
     {
         //playerLife = player.getPlayerLife();
+        if (playerLife == 6)
+        {
+            hearts[0].SetActive(true);
+            hearts[1].SetActive(true);
+            hearts[2].SetActive(true);
+            hearts[3].SetActive(true);
+            hearts[4].SetActive(true);
+            hearts[5].SetActive(true);
+            hearts[6].SetActive(true);
+            hearts[7].SetActive(true);
+            hearts[8].SetActive(true);
+            // hearts[9].SetActive(true);
+
+        }
         if (playerLife == 5)
         {
             hearts[0].SetActive(true);

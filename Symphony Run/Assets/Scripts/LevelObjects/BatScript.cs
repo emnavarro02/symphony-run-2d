@@ -18,10 +18,11 @@ public class BatScript : MonoBehaviour
 
     [SerializeField]
     private float xPosition = 0;
-    private int yPosition = 0;
     private bool facingRight = true;
     private bool detectedBefore = false;
     private GamePlayManager gamePlayManager;
+   
+    Vector3 stageDimensions;
 
     private void Start()
     {
@@ -36,45 +37,19 @@ public class BatScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         moveToThePlayer();
+        float vertExtent = Camera.main.orthographicSize;
+        float horzExtent = vertExtent * Screen.width / Screen.height;
+        stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(horzExtent, Screen.height, 0));
+
+        if (stageDimensions.x  > transform.position.x+2)
+        {
+            Debug.Log("destroy");
+            Destroy(gameObject);
+        }
+
     }
 
-    //void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("colision:" + detectedBefore);
-    //        //Exit if we have already done some damage
-    //        if (detectedBefore)
-    //        {
-    //            return;
-    //        }
-
-    //        //Set the other detectedBefore variable to true
-    //        //DamageStatus dmStat = other.gameObject.GetComponent<DamageStatus>();
-    //        //if (dmStat)
-    //        //{
-    //        //    dmStat.detectedBefore = true;
-    //        //}
-    //        other.gameObject.GetComponent<Player>().TakeDamage(damage);
-    //        //detectedBefore =truee
-    //        // Put damage/or code to run once below
-
-    //    }
-    //}
-
-    //void OnCollisionExit2D(Collision2D other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        //Reset on exit?
-    //        detectedBefore = true;
-    //    }
-    //}
-
-
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

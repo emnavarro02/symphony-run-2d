@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    //TODO: Persist values when game close
     private int overallNotesScore;
 
     private int claveScore;
@@ -70,22 +69,20 @@ public class GameManager : MonoBehaviour
         PersistData();
         if (!died)
         {
-            // print(SceneManager.GetActiveScene().name);
-            // print("NOT DIED: " + claveScore);
             UnlockNextLevel(levelIndex);
             if (levelIndex == 4 )
             {
-                LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5);
+                FindObjectOfType<LevelChanger>().FadeToLevel(5);
             }
             else
             {
-                LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
+                FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
             }
         }
         else
         {
             // Loads the GameOver Scene: 
-            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(6); // Load the GameOver Scene with Fade.
+            FindObjectOfType<LevelChanger>().FadeToLevel(6); // Load the GameOver Scene with Fade.
         }
 
     }
@@ -114,7 +111,7 @@ public class GameManager : MonoBehaviour
             int nextLevel = currentLevel + 1;
             //unlock next levels
             PlayerPrefs.SetInt("Level"+ nextLevel, 1); // Key: LevelName, Value: 1=unlocked / 0=locked
-            // PlayerPrefs.SetInt("Level2", 1); // Key: LevelName, Value: 1=unlocked / 0=locked
+
         }
         //Saving the notes score for the current level
         if (PlayerPrefs.GetInt("Level"+ currentLevel +"_score") < claveScore)
