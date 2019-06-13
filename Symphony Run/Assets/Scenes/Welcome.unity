@@ -690,6 +690,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 208715130340266639, guid: aa5d90c3e7683c1469bf2950ec487342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 208715130340266637, guid: aa5d90c3e7683c1469bf2950ec487342,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -758,17 +763,17 @@ PrefabInstance:
     - target: {fileID: 208715130039225146, guid: aa5d90c3e7683c1469bf2950ec487342,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 208715130039225146, guid: aa5d90c3e7683c1469bf2950ec487342,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 208715130039225146, guid: aa5d90c3e7683c1469bf2950ec487342,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 208715130039225146, guid: aa5d90c3e7683c1469bf2950ec487342,
         type: 3}

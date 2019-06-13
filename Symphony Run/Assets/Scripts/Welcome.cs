@@ -9,7 +9,9 @@ public class Welcome : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(0))
+        //if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetKeyDown(KeyCode.Space))
         //if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began)) 
         {
             print("Clicked");
@@ -17,13 +19,8 @@ public class Welcome : MonoBehaviour
         }
     }
 
-    private void LoadPreviousLevel()
-    {
-        LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(FindObjectOfType<GameManager>().currentLevel);
-    }
-
     private void LoadMainScreen()
     {
-        LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0);
+        SceneManager.LoadScene(0);
     }
 }
