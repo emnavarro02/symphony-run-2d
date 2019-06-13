@@ -23,7 +23,6 @@ public class LevelComplete : MonoBehaviour
             {
                 levelComplete = true;
                 gameManager.died = false;
-                //gameManager.EndLevel();
                 FindObjectOfType<GamePlayManager>().LevelComplete();
             }
 
