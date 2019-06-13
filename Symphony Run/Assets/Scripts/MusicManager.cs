@@ -54,7 +54,7 @@ public class MusicManager : MonoBehaviour
                 return audioLevel3;
             case 4:
                 return audioLevel4;
-            case 5:
+            case 6:
                 return dieMusic;
             default: throw new System.ArgumentOutOfRangeException();
         }

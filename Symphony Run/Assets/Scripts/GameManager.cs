@@ -70,10 +70,17 @@ public class GameManager : MonoBehaviour
         PersistData();
         if (!died)
         {
-            print(SceneManager.GetActiveScene().name);
-            print("NOT DIED: " + claveScore);
+            // print(SceneManager.GetActiveScene().name);
+            // print("NOT DIED: " + claveScore);
             UnlockNextLevel(levelIndex);
-            LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
+            if (levelIndex == 4 )
+            {
+                LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(5);
+            }
+            else
+            {
+                LevelChanger.FindObjectOfType<LevelChanger>().FadeToLevel(0); // Load the MainScene with Fade.
+            }
         }
         else
         {

@@ -221,7 +221,6 @@ public class Player : MonoBehaviour
     {
         gameManager.died = true;
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Stop();
-        //PersistData();
         gameManager.EndLevel(SceneManager.GetActiveScene().buildIndex);
     } 
 }

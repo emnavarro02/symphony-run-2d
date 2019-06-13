@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         //if (!PlayerPrefs.HasKey("notes"))
         //{
             int score = PlayerPrefs.GetInt("notes");
-        Debug.Log("score desde level manager"+score);
+        // Debug.Log("score desde level manager"+score);
             //generalScore.text = score.ToString();
         //}
         generalScore = GameObject.Find("Score").GetComponent<Text>();
@@ -126,7 +126,7 @@ public class LevelManager : MonoBehaviour
         if (levelNumber == 4)
         {
             print("Level Number is: " + levelNumber);
-            print("Attempting to load: " + SceneManager.GetSceneByName("GameComplete").buildIndex);
+            print("Attempting to load: " + SceneManager.GetSceneByName("Scene/GameComplete").buildIndex);
             levelChanger.FadeToLevel(5);
         }
         
