@@ -11,12 +11,7 @@ public class SkeletonScript : MonoBehaviour
     private bool facingRight = true;
     private bool detectedBefore = false;
     Vector3 stageDimensions;
-    // Start is called before the first frame update
-    void Start()
-
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -32,15 +27,6 @@ public class SkeletonScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        other.GetComponent<Player>().TakeDamage(damage);
-    //        // gamePlayManager.UpdatePlayerLife();
-    //    }
-    //}
 
 
     void OnCollisionEnter2D(Collision2D other)

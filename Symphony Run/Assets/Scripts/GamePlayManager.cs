@@ -11,7 +11,7 @@ public class GamePlayManager : MonoBehaviour
     private int notesNumberBonus = 0;
 
     [SerializeField]
-    private int notesNumberToBonus = 5;
+    private int notesNumberToBonus = 20;
     private int playerLife = 6;
 
     private Text scoreText;
@@ -208,18 +208,5 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    private void NewMethod(int inactive)
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            if (i == 1)
-            {
-                hearts[i].SetActive(true);
-            }
-            else
-            {
-                hearts[i].SetActive(false);
-            }
-        }
-    }
+
 }
