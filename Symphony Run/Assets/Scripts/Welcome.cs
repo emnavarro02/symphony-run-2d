@@ -18,6 +18,6 @@ public class Welcome : MonoBehaviour
 
     private void LoadMainScreen()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
