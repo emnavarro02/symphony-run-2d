@@ -29,7 +29,6 @@ public class GamePlayManager : MonoBehaviour
 
     private void Awake()
     {
-        
         MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetAudioClip(SceneManager.GetActiveScene().buildIndex);
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
     }
@@ -46,7 +45,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void LevelComplete()
     {
-        print("Level Complete");
+        // print("Level Complete");
         MusicController.Instance.gameObject.GetComponent<AudioSource>().clip = FindObjectOfType<MusicManager>().GetSFXEffect(MusicManager.SFX_LEVEL_COMPLETE);
         MusicController.Instance.gameObject.GetComponent<AudioSource>().Play();
         completeLevelUI.SetActive(true);
@@ -62,11 +61,11 @@ public class GamePlayManager : MonoBehaviour
     {
         notesScore++;
         clavesBonusScore++;
-        Debug.Log("Scoreeee:" + notesScore);
+       // Debug.Log("Scoreeee:" + notesScore);
         scoreText.text = "Notes: " + notesScore.ToString();
         //review
         gameManager.SetOverallNotesScore(notesScore);
-        Debug.Log("Score overal:" + gameManager.GetNotesScore().ToString());
+        //Debug.Log("Score overal:" + gameManager.GetNotesScore().ToString());
         if (clavesBonusScore == clavesNumberToBonus)
         {
             playerLife = playerLife + 1;
@@ -78,7 +77,7 @@ public class GamePlayManager : MonoBehaviour
     public void IncreaseClaves()
     {
         claveScore++;
-        Debug.Log("score:" + claveScore);
+        //Debug.Log("score:" + claveScore);
         clefText.text = "Clefs: " + claveScore.ToString();
 
         gameManager.SetClafScore(claveScore);
